@@ -1,0 +1,8 @@
+pixelSize = 5
+alienSpeed = 2
+alienSpacingX = 75
+alienSpacingY = 75
+alienStartX = 100
+alienStartY = -50
+aliensPerLine = 11
+shotSpeed = 8
