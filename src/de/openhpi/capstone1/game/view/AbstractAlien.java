@@ -10,15 +10,12 @@ public abstract class AbstractAlien extends AbstractEnemy{
 		super(display, posX, posY, imageName);
 		double alienSpeed = FileReader.readConfigurationDouble(display, "alienSpeed");
 		movement = new Mover(display, posY, alienSpeed);
-		screen = new String("GameScreen");
 	}
 	
 	@Override
 	public void update() {
-		if (screen.equals("GameScreen")) {
-			if(isAlive()) {
-				image.draw(posX, movement.getPosition());
-			}
+		if(isAlive()) {
+			image.draw(posX, movement.getPosition());
 		}
 	}
 }

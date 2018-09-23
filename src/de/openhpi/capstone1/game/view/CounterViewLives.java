@@ -32,8 +32,8 @@ public class CounterViewLives extends AbstractCounterView{
 	}
 	
 	public void update() {
-			display.fill(0);
-			displayLives();
-			displayNumberOfLives();
+		display.fill(0);
+		displayLives();
+		displayNumberOfLives();
 	}
 }

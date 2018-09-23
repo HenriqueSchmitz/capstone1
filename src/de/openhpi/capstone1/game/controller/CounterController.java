@@ -1,18 +1,18 @@
 package de.openhpi.capstone1.game.controller;
 
-import de.openhpi.capstone1.game.logic.Shot;
 import de.openhpi.capstone1.game.model.Counter;
+import de.openhpi.capstone1.game.view.ShotManager;
 import processing.core.PApplet;
 
 public class CounterController implements Controller {
 
 	Counter counter;
-	Shot shot;	
+	ShotManager shotManager;	
 
-	public CounterController(Counter counter, Shot shot) { 
+	public CounterController(Counter counter, ShotManager shotManager) { 
 		this.counter = counter;
 		this.counter.updateCount(100);
-		this.shot = shot;
+		this.shotManager = shotManager;
 	}
 	
 	public void checkMove(int count) {
@@ -35,7 +35,7 @@ public class CounterController implements Controller {
 			}
 		}
 		if (display.key == ' ') {	// shooting
-			shot.firstShot(counter.getCount() ,485 - counter.getHeight()/2);
+			shotManager.friendlyShot(counter.getCount() + 15, 460);
 		}
 	}
 

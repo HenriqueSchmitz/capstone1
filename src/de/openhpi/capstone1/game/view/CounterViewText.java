@@ -36,10 +36,10 @@ public class CounterViewText extends AbstractCounterView {
 	
 	@Override
 	public void update() {
-			display.fill(0);
-			displayCreditTitle();
-			displayScore1Title();
-			displayScore2Title();
-			displayHighScoreTitle();
+		display.fill(0);
+		displayCreditTitle();
+		displayScore1Title();
+		displayScore2Title();
+		displayHighScoreTitle();
 	}
 }

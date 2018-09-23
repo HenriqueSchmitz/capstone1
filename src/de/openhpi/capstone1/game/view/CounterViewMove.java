@@ -15,13 +15,14 @@ public class CounterViewMove extends AbstractCounterView {
 	}
 	
 	public void update() {
-			try {
-				int x = counter.getCount();
-				display.fill(255);
-				image.draw(x, 460);
-				//display.rect(x, 485, counter.getWidth(), counter.getHeight(), 2);	// I'm using rectangles for the moment
-			} catch (ClassCastException e) {
-				System.out.println(e.getMessage());
-			}
+		try {
+			int x = counter.getCount();
+			display.fill(255);
+			image.draw(x, 460);
+			//display.rect(x, 485, counter.getWidth(), counter.getHeight(), 2);	// I'm using rectangles for the moment
+		} catch (ClassCastException e) {
+			System.out.println(e.getMessage());
+		}
+		
 	}
 }

@@ -27,10 +27,10 @@ public class CounterViewShots extends AbstractCounterView{
 	}
 	
 	public void update() {
-			display.fill(0);
-			if (!(shot.getShotXPosition().isEmpty())) {
-				shot.checkShoot(-5);	// -5 on the Y axis. Makes the shot go up
-				displayShots();
-			}
+		display.fill(0);
+		if (!(shot.getShotXPosition().isEmpty())) {
+			shot.checkShoot(-5);	// -5 on the Y axis. Makes the shot go up
+			displayShots();
+		}
 	}
 }

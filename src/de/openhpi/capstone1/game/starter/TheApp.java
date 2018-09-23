@@ -1,15 +1,18 @@
 package de.openhpi.capstone1.game.starter;
 
-import de.openhpi.capstone1.game.builder.GUIComponent;
 import de.openhpi.capstone1.game.builder.InteractiveComponent;
+import de.openhpi.capstone1.game.builder.GUIComponent;
 import de.openhpi.capstone1.game.builder.InteractiveCounterBuilder;
+import de.openhpi.capstone1.game.graphics.Image;
+import de.openhpi.capstone1.game.model.Mover;
+
+// 0 up
+
 import processing.core.PApplet;
 
 public class TheApp extends PApplet {
 
 	InteractiveComponent interactiveCounter;
-	
-	//https://github.com/adasilva25/SpaceInvaders.git
 	
 	@Override
 	public void settings() {

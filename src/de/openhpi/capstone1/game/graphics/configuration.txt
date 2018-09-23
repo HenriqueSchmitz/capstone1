@@ -5,4 +5,5 @@ alienSpacingY = 75
 alienStartX = 100
 alienStartY = -50
 aliensPerLine = 11
-shotSpeed = 8
+shotSpeed = 15
+minimumShotDistance = 30

@@ -6,7 +6,7 @@ public class GUIComponent {
 	private GUIComponent() {}
 	
 	public static void construct(PApplet applet, Builder builder) {
-		builder.buildComponent();
+		builder.buildComponent(applet);
 		builder.buildModel();
 		builder.buildView(applet);
 		builder.buildController();

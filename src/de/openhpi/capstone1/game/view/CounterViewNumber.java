@@ -40,11 +40,11 @@ public class CounterViewNumber extends AbstractCounterView {
 	
 	@Override
 	public void update() {
-			display.fill(0);
-			displayCreditNumber();
-			displayScore1Number();
-			displayScore2Number();
-			displayHighScoreNumber();
+		display.fill(0);
+		displayCreditNumber();
+		displayScore1Number();
+		displayScore2Number();
+		displayHighScoreNumber();
 	}
 	
 }

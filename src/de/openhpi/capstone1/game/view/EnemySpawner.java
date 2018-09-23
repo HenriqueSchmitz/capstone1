@@ -29,7 +29,6 @@ public class EnemySpawner extends AbstractView{
 		spawnLine();
 		
 		screen = new String("GameScreen");
-		
 	}
 	
 	private void spawnLine() {
@@ -52,19 +51,19 @@ public class EnemySpawner extends AbstractView{
 	
 	
 	public void update() {
-			if(enemies.get(this.lastLine).get(0).getPosY() > (this.alienStartY + this.alienSpacingY)) {
-				spawnLine();
+		if(enemies.get(this.lastLine).get(0).getPosY() > (this.alienStartY + this.alienSpacingY)) {
+			spawnLine();
+		}
+		
+		while(!isLineAlive(0)) {
+			enemies.remove(0);
+		}
+		
+		for(int line = 0; line <= this.lastLine; line++) {
+			for(int column = 0; column < aliensPerLine; column++) {
+				enemies.get(line).get(column).update();
 			}
-			
-			while(!isLineAlive(0)) {
-				enemies.remove(0);
-			}
-			
-			for(int line = 0; line <= this.lastLine; line++) {
-				for(int column = 0; column < aliensPerLine; column++) {
-					enemies.get(line).get(column).update();
-				}
-			}
+		}
 	}
 	
 }

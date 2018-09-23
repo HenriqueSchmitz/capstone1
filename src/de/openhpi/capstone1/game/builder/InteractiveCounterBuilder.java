@@ -7,8 +7,8 @@ public class InteractiveCounterBuilder implements Builder {
 	InteractiveCounter iCounter;
 	
 	@Override
-	public void buildComponent() {
-		iCounter = new InteractiveCounter();
+	public void buildComponent(PApplet applet) {
+		iCounter = new InteractiveCounter(applet);
 	}
 
 	@Override

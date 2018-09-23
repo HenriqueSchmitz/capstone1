@@ -1,7 +1,7 @@
 package de.openhpi.capstone1.game.builder;
 
+import java.util.ArrayList;
 import de.openhpi.capstone1.game.controller.CounterControllerStrategy;
-import de.openhpi.capstone1.game.logic.Shot;
 import de.openhpi.capstone1.game.model.Counter;
 import de.openhpi.capstone1.game.view.AbstractView;
 import de.openhpi.capstone1.game.view.CounterViewColor;
@@ -14,61 +14,41 @@ import de.openhpi.capstone1.game.view.CounterViewStage;
 import de.openhpi.capstone1.game.view.CounterViewText;
 import de.openhpi.capstone1.game.view.EnemySpawner;
 import de.openhpi.capstone1.game.view.MenuScreen;
+import de.openhpi.capstone1.game.view.ShotManager;
 import processing.core.PApplet;
 
 public class InteractiveCounter extends InteractiveComponent {
 	CounterControllerStrategy counterControllerStrategy;
 	Counter counter;
-	Shot shot;
+	ShotManager shotManager;
 	
-	public InteractiveCounter() {}
+	public InteractiveCounter(PApplet applet) {
+		views = new ArrayList<AbstractView>();
+		shotManager = new ShotManager(applet);
+		screen = new String("MenuScreen");
+	}
 	
 	public void addModel() {
 		counter = new Counter();
-		shot = new Shot();
 	}
 	
 	public void createViews(PApplet applet) {
-		screen = new String("MenuScreen");
-		views = new AbstractView[10];
-		views[0] = new MenuScreen(applet);
-		views[1] = new CounterViewMove(applet, counter);
-		views[2] = new CounterViewColor(applet, counter);
-		views[3] = new CounterViewNumber(applet, counter);
-		views[4] = new CounterViewText(applet, counter);
-		views[5] = new CounterViewStage(applet, counter);
-		views[6] = new CounterViewShots(applet, counter, shot);
-		views[7] = new CounterViewEnemies(applet, counter);
-		views[8] = new CounterViewLives(applet, counter);
-		views[9] = new EnemySpawner(applet);
+		views.add(new MenuScreen(applet));
+		views.add(new CounterViewMove(applet, counter));
+		views.add(new CounterViewColor(applet, counter));
+		views.add(new CounterViewNumber(applet, counter));
+		views.add(new CounterViewText(applet, counter));
+		views.add(new CounterViewStage(applet, counter));
+		//views.add(new CounterViewShots(applet, counter, shot));
+		views.add(new CounterViewEnemies(applet, counter));
+		views.add(new CounterViewLives(applet, counter));
+		views.add(new EnemySpawner(applet));
+		views.add(shotManager);
 	}
 	
 	public void addController() {
-		counterControllerStrategy = new CounterControllerStrategy(counter, shot);
+		counterControllerStrategy = new CounterControllerStrategy(counter, shotManager);
 	}
-	
-	/*public void displayGameScreen(PApplet display) {
-		this.update();
-	}
-	
-	public void displayMainMenuScreen(PApplet display) {	
-		display.background(0);
-		display.textSize(60);
-		display.fill(255);
-		display.text("SPACE INVADERS", 150, 100);
-		if (display.mousePressed) {
-			screen = 2;
-		}
-	}
-	
-	public void handleScreen(PApplet display) {
-		if (screen == 1) {
-			displayMainMenuScreen(display);
-		}
-		if (screen == 2) {
-			displayGameScreen(display);
-		}
-	}*/
 	
 	@Override
 	public void handleEvent(PApplet display) {

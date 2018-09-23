@@ -1,5 +1,7 @@
 package de.openhpi.capstone1.game.model;
 
+import java.util.ArrayList;
+
 public class Counter {
 	
 	private int count = 0;
