@@ -1,5 +1,5 @@
 pixelSize = 5
-alienSpeed = 2
+alienSpeed = 1
 alienSpacingX = 75
 alienSpacingY = 75
 alienStartX = 100

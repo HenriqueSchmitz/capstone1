@@ -26,6 +26,9 @@ public class CounterViewEnemies extends AbstractCounterView{
 	}
 	
 	public void update() {
+		display.fill(0);
+		createEnemies();
+		displayEnemies();
 	}
 
 }

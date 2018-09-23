@@ -7,7 +7,6 @@ public class CounterViewText extends AbstractCounterView {
 	
 	public CounterViewText(PApplet display, Counter counter) {
 		super(display, counter);
-		screen = new String("GameScreen");
 	}
 	
 	public void displayCreditTitle() {

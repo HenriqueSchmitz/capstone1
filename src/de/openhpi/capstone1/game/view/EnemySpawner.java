@@ -9,6 +9,7 @@ import processing.core.PApplet;
 public class EnemySpawner extends AbstractView{
 
 	private ArrayList<ArrayList<AbstractEnemy>> enemies;
+	private ShotManager shotManager;
 	private int aliensPerLine;
 	private int alienStartX;
 	private int alienStartY;
@@ -16,10 +17,11 @@ public class EnemySpawner extends AbstractView{
 	private int alienSpacingY;
 	private int lastLine;
 	
-	public EnemySpawner(PApplet display){
+	public EnemySpawner(PApplet display, ShotManager shotManager){
 		super(display);
 		enemies = new ArrayList<ArrayList<AbstractEnemy>>();
 		
+		this.shotManager = shotManager;
 		this.aliensPerLine = FileReader.readConfiguration(display, "aliensPerLine");
 		this.alienStartX = FileReader.readConfiguration(display, "alienStartX");
 		this.alienStartY = FileReader.readConfiguration(display, "alienStartY");
@@ -28,7 +30,6 @@ public class EnemySpawner extends AbstractView{
 		
 		spawnLine();
 		
-		screen = new String("GameScreen");
 	}
 	
 	private void spawnLine() {
@@ -36,6 +37,7 @@ public class EnemySpawner extends AbstractView{
 		this.lastLine = enemies.size() - 1;
 		for(int column = 0; column < aliensPerLine; column++) {
 			enemies.get(lastLine).add(new SpaceInvader(display, alienStartX + column * alienSpacingX, alienStartY));
+			this.shotManager.addEnemy(enemies.get(lastLine).get(column));
 		}
 	}
 	
@@ -57,6 +59,7 @@ public class EnemySpawner extends AbstractView{
 		
 		while(!isLineAlive(0)) {
 			enemies.remove(0);
+			this.lastLine--;
 		}
 		
 		for(int line = 0; line <= this.lastLine; line++) {

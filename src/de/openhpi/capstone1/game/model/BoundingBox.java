@@ -18,16 +18,22 @@ public class BoundingBox {
 		int[] boundaries = new int[4];
 		
 		boundaries[0] = posX;
-		boundaries[1] = posY;
-		boundaries[2] = sizeX;
-		boundaries[3] = sizeY;
+		boundaries[1] = posX + sizeX;
+		boundaries[2] = posY;
+		boundaries[3] = posY + sizeY;
 		
 		return boundaries;
 	}
 	
 	public boolean checkCollision(BoundingBox target) {
 		int[] targetBox = target.getBoundaries();
-
+		int[] thisBox = this.getBoundaries();
+		if((thisBox[2] > targetBox[2]) && (thisBox[3] < targetBox[3])) {
+			if((thisBox[0] < targetBox[1]) && (thisBox[1] > targetBox[0])) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 }

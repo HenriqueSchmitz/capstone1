@@ -7,7 +7,6 @@ public class CounterViewStage extends AbstractCounterView{	// stage elements
 
 	public CounterViewStage(PApplet display, Counter counter) {
 		super(display, counter);
-		screen = new String("GameScreen");
 	}
 	
 	@Override
@@ -16,7 +15,7 @@ public class CounterViewStage extends AbstractCounterView{	// stage elements
 		// display the line above the credits and lives
 		display.strokeWeight(7);	
 		display.stroke(255);	// line color
-		display.line(100, 520, 800, 520);
+		display.line(100, 530, 800, 530);
 	}
 	
 }

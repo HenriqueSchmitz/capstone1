@@ -16,7 +16,6 @@ public class ShotManager extends AbstractView {
 		enemies = new ArrayList<AbstractEnemy>();
 		friendlyShots = new ArrayList<Shot>();
 		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");
-		screen = new String("GameScreen");
 	}
 	
 	public void addEnemy(AbstractEnemy enemy) {
@@ -36,8 +35,21 @@ public class ShotManager extends AbstractView {
 	}
 	
 	public void update() {
+		for(int shot = 0; shot < friendlyShots.size(); shot++) {
+			for(AbstractEnemy targetEnemy: this.enemies) {
+				if(targetEnemy.isAlive()) {
+					if(this.friendlyShots.get(shot).getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
+						this.friendlyShots.remove(shot);
+						targetEnemy.takeDamage();
+						break;
+					}
+				}
+			}
+		}
+		
 		for(Shot shot: friendlyShots) {
 			shot.update();
 		}
+		
 	}
 }

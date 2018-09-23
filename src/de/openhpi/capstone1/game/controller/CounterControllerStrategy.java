@@ -2,7 +2,6 @@ package de.openhpi.capstone1.game.controller;
 
 import de.openhpi.capstone1.game.model.Counter;
 import de.openhpi.capstone1.game.view.ShotManager;
-import processing.core.PApplet;
 
 public class CounterControllerStrategy {
 	private Controller counterController;
@@ -11,8 +10,8 @@ public class CounterControllerStrategy {
 		this.counterController = new CounterController(counter, shotManager);
 	}
 	
-	public void handleEvent(PApplet display) {
-		counterController.handleEvent(display);
+	public void handleEvent(int count) {
+		counterController.handleEvent(count);
 	}
 	
 }

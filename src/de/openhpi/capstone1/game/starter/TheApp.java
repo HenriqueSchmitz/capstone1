@@ -13,10 +13,11 @@ import processing.core.PApplet;
 public class TheApp extends PApplet {
 
 	InteractiveComponent interactiveCounter;
+	private int stage = 1;
 	
 	@Override
 	public void settings() {
-		size(900, 600);	// (width, height)
+		size(1200, 750);	// (width, height)
 	}
 
 	@Override
@@ -27,20 +28,43 @@ public class TheApp extends PApplet {
 		GUIComponent.construct(this, builder);
 		interactiveCounter = builder.getComponent();
 	}
+
+	public void displayGameScreen() {
+		background(0);
+		interactiveCounter.update();
+	}
+	
+	public void displayMainMenuScreen() {	// testing
+		background(0);
+		textSize(60);
+		fill(255);
+		text("SPACE INVADERS", 150, 100);
+	}
 	
 	@Override
 	public void draw() {  // draw() loops forever, until stopped
-		background(0);	
-		interactiveCounter.update();
+		background(0);	// 0 -> black color	| 255 -> white color
+		displayGameScreen();
 	}
 	
 	//Add further user interaction as necessary
 	@Override
 	public void keyPressed() {
-		interactiveCounter.handleEvent(this);
+		if (key == CODED) {	//	moving
+			if (keyCode == RIGHT) {	// moving right
+				interactiveCounter.handleEvent(5);
+			}
+			if (keyCode == LEFT) {	// moving left
+				interactiveCounter.handleEvent(-5);
+			}
+		}
+		if (key == ' ') {	// shooting
+			interactiveCounter.handleEvent(0);
+		}
 	}
 	
-	public void mousePressed() {
-		interactiveCounter.handleEvent(this);
+	@Override
+	public void keyReleased() {
+		
 	}
 }
