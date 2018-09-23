@@ -7,7 +7,7 @@ public class CounterViewNumber extends AbstractCounterView {
 			
 	public CounterViewNumber(PApplet display, Counter counter) {
 		super(display, counter);
-		screen = new String("GameScreen");
+		//screen = new String("GameScreen");
 	}
 	
 	public void displayCreditNumber() {

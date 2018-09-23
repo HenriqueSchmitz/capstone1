@@ -20,7 +20,7 @@ public class InteractiveCounter extends InteractiveComponent {
 	ShotManager shotManager;
 	
 	public InteractiveCounter(PApplet applet) {
-		views = new ArrayList<AbstractView>();
+		game = new ArrayList<AbstractView>();
 		shotManager = new ShotManager(applet);
 	}
 	
@@ -30,13 +30,13 @@ public class InteractiveCounter extends InteractiveComponent {
 	}
 	
 	public void createViews(PApplet applet) {
-		views.add(new CounterViewMove(applet, counter));
-		views.add(new CounterViewText(applet, counter));
-		views.add(new CounterViewStage(applet, counter));
-		views.add(new CounterViewEnemies(applet, counter));
-		views.add(new CounterViewLives(applet, counter));
-		views.add(new EnemySpawner(applet, shotManager));
-		views.add(shotManager);
+		game.add(new CounterViewMove(applet, counter));
+		game.add(new CounterViewText(applet, counter));
+		game.add(new CounterViewStage(applet, counter));
+		game.add(new CounterViewEnemies(applet, counter));
+		game.add(new CounterViewLives(applet, counter));
+		game.add(new EnemySpawner(applet, shotManager));
+		game.add(shotManager);
 	}
 	
 	public void addController() {

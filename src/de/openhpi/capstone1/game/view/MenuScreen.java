@@ -8,7 +8,7 @@ public class MenuScreen extends AbstractView{
 	
 	public MenuScreen(PApplet display) {
 		super(display);
-		screen = new String("MenuScreen");
+		//screen = new String("MenuScreen");
 		image = new Image(display, "Ship");
 	}
 	
@@ -24,7 +24,7 @@ public class MenuScreen extends AbstractView{
 		image.draw(270, 380);
 		image.draw(570, 380);
 		if (display.mousePressed) {
-			screen = "GameScreen";
+			//screen = "GameScreen";
 		}
 	}
 

@@ -9,7 +9,7 @@ public class CounterViewShots extends AbstractCounterView{
 	public CounterViewShots(PApplet display, Counter counter, Shot shot) {
 		super(display, counter);
 		this.shot = shot;
-		screen = new String("GameScreen");
+		//screen = new String("GameScreen");
 	}
 
 	public void displayShots() {
