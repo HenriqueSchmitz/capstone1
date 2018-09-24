@@ -5,13 +5,15 @@ import de.openhpi.capstone1.game.logic.Lives;
 import de.openhpi.capstone1.game.model.Counter;
 import processing.core.PApplet;
 
-public class CounterViewLives extends AbstractCounterView{
-	Image image;
+public class ViewLives extends AbstractView{
 	
-	public CounterViewLives(PApplet display, Counter counter) {
-		super(display, counter);
-		this.lives = new Lives();
-		image = new Image(display, "Heart");
+	protected Lives lives;
+	protected Image image;
+	
+	public ViewLives(PApplet display, Counter counter, Player player) {
+		super(display);
+		this.lives = player.getLives();
+		this.image = new Image(display, "Heart");
 	}
 	
 	public void displayNumberOfLives() {

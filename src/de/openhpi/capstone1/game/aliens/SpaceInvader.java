@@ -15,7 +15,7 @@ public class SpaceInvader extends AbstractAlien{
 	}
 	
 	protected void setHealthPoints() {
-		this.healthPoints = 2;
+		this.lives.setNumberOfLives(2);;
 	}
 	
 	protected void setScoreValue() {

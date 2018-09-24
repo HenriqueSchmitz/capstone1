@@ -2,27 +2,30 @@ package de.openhpi.capstone1.game.view;
 
 import de.openhpi.capstone1.game.graphics.Image;
 import de.openhpi.capstone1.game.logic.Lives;
-import de.openhpi.capstone1.game.logic.Score;
 import de.openhpi.capstone1.game.model.BoundingBox;
 import de.openhpi.capstone1.game.model.Counter;
 import processing.core.PApplet;
 
 public class Player extends AbstractCounterView { 
 	
-	public Lives lives;
-	protected Score score;
+	protected Lives lives;
 	protected Image image;
 	protected BoundingBox boundingBox;
 	
 	public Player(PApplet display, Counter counter) {
 		super(display, counter);
+		this.lives = new Lives();
 		this.boundingBox = new BoundingBox();
-		image = new Image(display, "Ship");
+		this.image = new Image(display, "Ship");
 	}
 	
 	public BoundingBox getBoundingBox() {
 		this.boundingBox.update(counter.getCount(), 470, image.getSizeX(), image.getSizeY());
 		return this.boundingBox;
+	}
+	
+	public Lives getLives() {
+		return this.lives;
 	}
 	
 	public void update() {

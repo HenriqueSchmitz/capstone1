@@ -2,21 +2,29 @@ package de.openhpi.capstone1.game.logic;
 
 public class Lives {
 	
-	private int numberOfLives;
+	private int lives;
 	
 	public Lives() {
-		this.numberOfLives = 3;
+		this.lives = 3;
 	}
 	
 	public void setNumberOfLives(int lives) {
-		this.numberOfLives = lives;
+		this.lives = lives;
 	}
 	
 	public int getNumberOfLives() {
-		return this.numberOfLives;
+		return this.lives;
 	}
 	
-	public void updateNumberOfLives() {
-		this.numberOfLives++;
+	public void takeDamage() {
+		this.lives--;
+	}
+	
+	public void die() {
+		this.lives = 0;
+	}
+	
+	public boolean isAlive() {
+		return this.lives > 0;
 	}
 }

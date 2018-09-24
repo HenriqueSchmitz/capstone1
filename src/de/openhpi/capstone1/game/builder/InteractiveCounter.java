@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import de.openhpi.capstone1.game.controller.CounterControllerStrategy;
 import de.openhpi.capstone1.game.model.Counter;
 import de.openhpi.capstone1.game.view.AbstractView;
-import de.openhpi.capstone1.game.view.CounterViewLives;
+import de.openhpi.capstone1.game.view.ViewLives;
 import de.openhpi.capstone1.game.view.CounterViewStage;
 import de.openhpi.capstone1.game.view.CounterViewText;
 import de.openhpi.capstone1.game.view.DamageManager;
@@ -45,7 +45,7 @@ public class InteractiveCounter extends InteractiveComponent {
 		game.add(player);
 		game.add(new CounterViewText(applet, counter));
 		game.add(new CounterViewStage(applet, counter));
-		game.add(new CounterViewLives(applet, counter));
+		game.add(new ViewLives(applet, counter, player));
 		game.add(new EnemySpawner(this, applet, damageManager));
 		game.add(damageManager);
 		game.add(points);

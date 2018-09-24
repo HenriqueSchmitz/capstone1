@@ -1,6 +1,7 @@
 package de.openhpi.capstone1.game.view;
 
 import de.openhpi.capstone1.game.graphics.Image;
+import de.openhpi.capstone1.game.logic.Lives;
 import de.openhpi.capstone1.game.model.BoundingBox;
 import de.openhpi.capstone1.game.model.Mover;
 import processing.core.PApplet;
@@ -10,7 +11,7 @@ public abstract class AbstractEnemy extends AbstractView{
 	protected Mover movement;
 	protected Image image;
 	protected BoundingBox boundingBox;
-	protected int healthPoints;
+	protected Lives lives;
 	protected int scoreValue;
 	protected int posX;
 	protected int posY;
@@ -24,8 +25,9 @@ public abstract class AbstractEnemy extends AbstractView{
 		super(display);
 		this.posX = posX;
 		this.posY = posY;
-		boundingBox = new BoundingBox();
-		image = new Image(display, imageName);
+		this.lives = new Lives();
+		this.boundingBox = new BoundingBox();
+		this.image = new Image(display, imageName);
 		setHealthPoints();
 		setScoreValue();
 	}
@@ -34,22 +36,23 @@ public abstract class AbstractEnemy extends AbstractView{
 	protected abstract void setScoreValue();
 	
 	public void takeDamage(Points points) {
-		if(isAlive()) {
-			healthPoints--;
+		if(lives.isAlive()) {
+			lives.takeDamage();
 			
-			if (healthPoints == 0) {
+			if (!lives.isAlive()) {
 				points.updateNumberOfAliensDead(1);
 			}
 			
 		}
 	}
 	
-	public void die() {
-		this.healthPoints = 0;
+	public void die(Points points) {
+		this.lives.die();
+		points.updateNumberOfAliensDead(1);
 	}
 	
  	public boolean isAlive() {
-		return healthPoints > 0;
+		return lives.isAlive();
 	}
  	
  	public int getPosX() {

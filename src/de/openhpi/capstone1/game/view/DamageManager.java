@@ -60,7 +60,7 @@ public class DamageManager extends AbstractView {
 			for(AbstractEnemy targetEnemy: this.enemies) {
 				if(targetEnemy.isAlive()) {
 					if(player.getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
-						targetEnemy.die();
+						targetEnemy.die(points);
 						break;
 					}
 				}
