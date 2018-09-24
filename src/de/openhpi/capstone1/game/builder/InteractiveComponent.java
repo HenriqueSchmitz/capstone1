@@ -9,6 +9,7 @@ public abstract class InteractiveComponent {
 	public abstract void handleScreen(PApplet display);
 	protected ArrayList<AbstractView> game;
 	protected ArrayList<AbstractView> menu;
+	//protected ArrayList<AbstractView> gameOver;
 	protected String view;
 	
 	public void setView(String view) {
@@ -29,6 +30,11 @@ public abstract class InteractiveComponent {
 		else if (view.equals("GameOver")) {
 			System.out.println("GameOver screen called");
 			//Insert the game over screen here and delete the println
+			
+			/*for (AbstractView view : gameOver) {
+				view.update(); 
+			}*/
+			
 		}
 	}
 }

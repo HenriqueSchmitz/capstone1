@@ -21,11 +21,10 @@ public class CounterViewLives extends AbstractCounterView{
 	}
 	
 	public void displayLives() {
-		// display the number of lives (rectangles)
 		int x = 160;
 		for (int live = 0; live < lives.getNumberOfLives(); live++) {
 			display.fill(255);
-			image.draw(x, 535);
+			image.draw(x, 540);
 			x = x + 50;
 		}
 	}

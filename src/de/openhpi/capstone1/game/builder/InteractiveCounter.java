@@ -12,6 +12,7 @@ import de.openhpi.capstone1.game.view.CounterViewStage;
 import de.openhpi.capstone1.game.view.CounterViewText;
 import de.openhpi.capstone1.game.view.EnemySpawner;
 import de.openhpi.capstone1.game.view.MenuScreen;
+import de.openhpi.capstone1.game.view.Points;
 import de.openhpi.capstone1.game.view.DamageManager;
 import processing.core.PApplet;
 
@@ -21,10 +22,15 @@ public class InteractiveCounter extends InteractiveComponent {
 	DamageManager damageManager;
 	CounterViewMove player;
 	
+	Points points;
+	
 	public InteractiveCounter(PApplet applet) {
 		game = new ArrayList<AbstractView>();
 		menu = new ArrayList<AbstractView>();
-		damageManager = new DamageManager(applet);
+		
+		points = new Points(applet);
+		
+		damageManager = new DamageManager(applet, points);
 		view = new String("MenuScreen");
 		
 		
@@ -44,6 +50,7 @@ public class InteractiveCounter extends InteractiveComponent {
 		game.add(new CounterViewLives(applet, counter));
 		game.add(new EnemySpawner(this, applet, damageManager));
 		game.add(damageManager);
+		game.add(points);
 		menu.add(new MenuScreen(applet));
 	}
 	

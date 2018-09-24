@@ -33,9 +33,14 @@ public abstract class AbstractEnemy extends AbstractView{
 	protected abstract void setHealthPoints();
 	protected abstract void setScoreValue();
 	
-	public void takeDamage() {
+	public void takeDamage(Points points) {
 		if(isAlive()) {
 			healthPoints--;
+			
+			if (healthPoints == 0) {
+				points.updateNumberOfAliensDead(1);
+			}
+			
 		}
 	}
 	

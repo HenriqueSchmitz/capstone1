@@ -11,13 +11,16 @@ public class DamageManager extends AbstractView {
 	private ArrayList<AbstractEnemy> enemies;
 	private ArrayList<Shot> friendlyShots;
 	private int minimumShotDistance;
+	private Points points;
 	
-	public DamageManager(PApplet display) {
+	public DamageManager(PApplet display, Points points) {
 		super(display);
 		players = new ArrayList<CounterViewMove>();
 		enemies = new ArrayList<AbstractEnemy>();
 		friendlyShots = new ArrayList<Shot>();
 		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");
+	
+		this.points = points;
 	}
 	
 	public void addEnemy(AbstractEnemy enemy) {
@@ -46,7 +49,7 @@ public class DamageManager extends AbstractView {
 				if(targetEnemy.isAlive()) {
 					if(this.friendlyShots.get(shot).getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
 						this.friendlyShots.remove(shot);
-						targetEnemy.takeDamage();
+						targetEnemy.takeDamage(points);
 						break;
 					}
 				}
@@ -67,6 +70,7 @@ public class DamageManager extends AbstractView {
 		for(Shot shot: friendlyShots) {
 			shot.update();
 		}
+		
 		
 	}
 }
