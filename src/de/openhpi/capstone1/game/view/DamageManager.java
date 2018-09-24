@@ -7,7 +7,7 @@ import processing.core.PApplet;
 
 public class DamageManager extends AbstractView {
 
-	private ArrayList<CounterViewMove> players;
+	private ArrayList<Player> players;
 	private ArrayList<AbstractEnemy> enemies;
 	private ArrayList<Shot> friendlyShots;
 	private int minimumShotDistance;
@@ -15,7 +15,7 @@ public class DamageManager extends AbstractView {
 	
 	public DamageManager(PApplet display, Points points) {
 		super(display);
-		players = new ArrayList<CounterViewMove>();
+		players = new ArrayList<Player>();
 		enemies = new ArrayList<AbstractEnemy>();
 		friendlyShots = new ArrayList<Shot>();
 		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");
@@ -27,7 +27,7 @@ public class DamageManager extends AbstractView {
 		enemies.add(enemy);
 	}
 	
-	public void addPlayer(CounterViewMove player) {
+	public void addPlayer(Player player) {
 		players.add(player);
 	}
 	
@@ -56,7 +56,7 @@ public class DamageManager extends AbstractView {
 			}
 		}
 		
-		for(CounterViewMove player: this.players) {
+		for(Player player: this.players) {
 			for(AbstractEnemy targetEnemy: this.enemies) {
 				if(targetEnemy.isAlive()) {
 					if(player.getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
