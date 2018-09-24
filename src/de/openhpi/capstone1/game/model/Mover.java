@@ -38,4 +38,12 @@ public class Mover {
 		
 		return currentPosition;
 	}
+	
+	public int getStartTime() {
+		return this.startMillis;
+	}
+	
+	public void setStartTime(int startMillis) {
+		this.startMillis = startMillis;
+	}
 }

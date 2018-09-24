@@ -55,6 +55,14 @@ public abstract class AbstractEnemy extends AbstractView{
  		boundingBox.update(this.getPosX(), this.getPosY(), image.getSizeX(), image.getSizeY());
  		return this.boundingBox;
  	}
+	
+	public int getSpawnTime() {
+		return this.movement.getStartTime();
+	}
+	
+	public void setSpawnTime(int spawnTime) {
+		this.movement.setStartTime(spawnTime);
+	}
  	
 	public abstract void attack();
 	

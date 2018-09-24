@@ -37,6 +37,7 @@ public class EnemySpawner extends AbstractView{
 		for(int column = 0; column < aliensPerLine; column++) {
 			enemies.get(lastLine).add(new SpaceInvader(display, alienStartX + column * alienSpacingX, alienStartY));
 			this.shotManager.addEnemy(enemies.get(lastLine).get(column));
+			enemies.get(lastLine).get(column).setSpawnTime(enemies.get(lastLine).get(0).getSpawnTime());;
 		}
 	}
 	
