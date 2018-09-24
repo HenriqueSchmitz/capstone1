@@ -7,8 +7,8 @@ import processing.core.PApplet;
 public class CounterControllerStrategy {
 	private Controller counterController;
 	
-	public CounterControllerStrategy(Counter counter, DamageManager shotManager) {
-		this.counterController = new CounterController(counter, shotManager);
+	public CounterControllerStrategy(PApplet display, Counter counter, DamageManager shotManager) {
+		this.counterController = new CounterController(display, counter, shotManager);
 	}
 	
 	public void handleEvent(PApplet display) {

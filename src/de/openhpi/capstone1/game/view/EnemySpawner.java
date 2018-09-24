@@ -18,7 +18,7 @@ public class EnemySpawner extends AbstractView{
 	private int alienSpacingX;
 	private int alienSpacingY;
 	private int lastLine;
-	private int gameOverLinePositionY;
+	private int endlinePosition;
 	
 	public EnemySpawner(InteractiveCounter interactiveCounter, PApplet display, DamageManager damageManager){
 		super(display);
@@ -31,8 +31,9 @@ public class EnemySpawner extends AbstractView{
 		this.alienStartY = FileReader.readConfiguration(display, "alienStartY");
 		this.alienSpacingX = FileReader.readConfiguration(display, "alienSpacingX");
 		this.alienSpacingY = FileReader.readConfiguration(display, "alienSpacingY");
-		this.gameOverLinePositionY = FileReader.readConfiguration(display, "gameOverLinePositionY");
-		
+		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
+		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
+		this.endlinePosition = screenHeight - endlinePositionFromBottom;
 	}
 	
 	private void spawnLine() {
@@ -55,7 +56,7 @@ public class EnemySpawner extends AbstractView{
 	}
 	
 	private boolean isGameOver() {
-		return (enemies.get(0).get(0).getPosY() + enemies.get(0).get(0).image.getSizeY()) > this.gameOverLinePositionY;
+		return (enemies.get(0).get(0).getPosY() + enemies.get(0).get(0).image.getSizeY()) > this.endlinePosition;
 	}
 	
 	

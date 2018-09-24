@@ -9,6 +9,6 @@ public class GUIComponent {
 		builder.buildComponent(applet);
 		builder.buildModel();
 		builder.buildView(applet);
-		builder.buildController();
+		builder.buildController(applet);
 	}
 }

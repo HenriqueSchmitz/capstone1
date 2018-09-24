@@ -1,18 +1,27 @@
 package de.openhpi.capstone1.game.controller;
 
+import de.openhpi.capstone1.game.graphics.FileReader;
+import de.openhpi.capstone1.game.graphics.Image;
 import de.openhpi.capstone1.game.model.Counter;
 import de.openhpi.capstone1.game.view.DamageManager;
 import processing.core.PApplet;
 
 public class CounterController implements Controller {
 
-	Counter counter;
-	DamageManager shotManager;	
+	private PApplet display;
+	private Counter counter;
+	private DamageManager shotManager;
+	private int shotStartingY;
 
-	public CounterController(Counter counter, DamageManager shotManager) { 
+	public CounterController(PApplet display, Counter counter, DamageManager shotManager) { 
+		this.display = display;
 		this.counter = counter;
 		this.counter.updateCount(100);
 		this.shotManager = shotManager;
+		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
+		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
+		Image image = new Image(display, "Ship");
+		this.shotStartingY = screenHeight - endlinePositionFromBottom - image.getSizeY();
 	}
 	
 	public void checkMove(int count) {
@@ -35,7 +44,7 @@ public class CounterController implements Controller {
 			}
 		}
 		if (display.key == ' ') {	// shooting
-			shotManager.friendlyShot(counter.getCount() + 15, 460);
+			shotManager.friendlyShot(counter.getCount() + 15, this.shotStartingY - 10);
 		}
 	}
 	

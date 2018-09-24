@@ -1,6 +1,7 @@
 package de.openhpi.capstone1.game.view;
 
 import de.openhpi.capstone1.game.builder.InteractiveCounter;
+import de.openhpi.capstone1.game.graphics.FileReader;
 import de.openhpi.capstone1.game.graphics.Image;
 import de.openhpi.capstone1.game.logic.Lives;
 import de.openhpi.capstone1.game.model.BoundingBox;
@@ -9,10 +10,11 @@ import processing.core.PApplet;
 
 public class Player extends AbstractCounterView { 
 	
-	protected Lives lives;
-	protected Image image;
-	protected BoundingBox boundingBox;
-	protected InteractiveCounter interactiveCounter;
+	private Lives lives;
+	private Image image;
+	private BoundingBox boundingBox;
+	private InteractiveCounter interactiveCounter;
+	private int playerPositionY;
 	
 	public Player(InteractiveCounter interactiveCounter, PApplet display, Counter counter) {
 		super(display, counter);
@@ -20,10 +22,14 @@ public class Player extends AbstractCounterView {
 		this.lives = new Lives();
 		this.boundingBox = new BoundingBox();
 		this.image = new Image(display, "Ship");
+		
+		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
+		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
+		this.playerPositionY = screenHeight - endlinePositionFromBottom - image.getSizeY() - 10;
 	}
 	
 	public BoundingBox getBoundingBox() {
-		this.boundingBox.update(counter.getCount(), 470, image.getSizeX(), image.getSizeY());
+		this.boundingBox.update(counter.getCount(), playerPositionY, image.getSizeX(), image.getSizeY());
 		return this.boundingBox;
 	}
 	
@@ -43,7 +49,7 @@ public class Player extends AbstractCounterView {
 		try {
 			int x = counter.getCount();
 			display.fill(255);
-			image.draw(x, 470);
+			image.draw(x, playerPositionY);
 		} catch (ClassCastException e) {
 			System.out.println(e.getMessage());
 		}

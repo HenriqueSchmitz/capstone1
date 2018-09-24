@@ -3,6 +3,7 @@ package de.openhpi.capstone1.game.starter;
 import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import de.openhpi.capstone1.game.builder.GUIComponent;
 import de.openhpi.capstone1.game.builder.InteractiveCounterBuilder;
+import de.openhpi.capstone1.game.graphics.FileReader;
 
 // 0 up
 
@@ -14,7 +15,9 @@ public class TheApp extends PApplet {
 	
 	@Override
 	public void settings() {
-		size(1200, 750);	// (width, height)
+		int width = FileReader.readConfiguration(this, "screenWidth");
+		int height = FileReader.readConfiguration(this, "screenHeight");
+		size(width, height);
 	}
 
 	@Override

@@ -6,8 +6,8 @@ import de.openhpi.capstone1.game.controller.CounterControllerStrategy;
 import de.openhpi.capstone1.game.model.Counter;
 import de.openhpi.capstone1.game.view.AbstractView;
 import de.openhpi.capstone1.game.view.ViewLives;
-import de.openhpi.capstone1.game.view.CounterViewStage;
-import de.openhpi.capstone1.game.view.CounterViewText;
+import de.openhpi.capstone1.game.view.Stage;
+import de.openhpi.capstone1.game.view.ViewText;
 import de.openhpi.capstone1.game.view.DamageManager;
 import de.openhpi.capstone1.game.view.EnemySpawner;
 import de.openhpi.capstone1.game.view.MenuScreen;
@@ -43,17 +43,17 @@ public class InteractiveCounter extends InteractiveComponent {
 		player = new Player(this, applet, counter);
 		damageManager.addPlayer(player);
 		game.add(player);
-		game.add(new CounterViewText(applet, counter));
-		game.add(new CounterViewStage(applet, counter));
+		game.add(new Stage(applet));
 		game.add(new ViewLives(applet, counter, player));
 		game.add(new EnemySpawner(this, applet, damageManager));
 		game.add(damageManager);
 		game.add(points);
+		game.add(new ViewText(applet));
 		menu.add(new MenuScreen(applet));
 	}
 	
-	public void addController() {
-		counterControllerStrategy = new CounterControllerStrategy(counter, damageManager);
+	public void addController(PApplet applet) {
+		counterControllerStrategy = new CounterControllerStrategy(applet, counter, damageManager);
 	}
 	
 	public void handleScreen(PApplet display) {
