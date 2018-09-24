@@ -28,7 +28,6 @@ public class EnemySpawner extends AbstractView{
 		this.alienSpacingX = FileReader.readConfiguration(display, "alienSpacingX");
 		this.alienSpacingY = FileReader.readConfiguration(display, "alienSpacingY");
 		
-		spawnLine();
 		
 	}
 	
@@ -53,18 +52,23 @@ public class EnemySpawner extends AbstractView{
 	
 	
 	public void update() {
-		if(enemies.get(this.lastLine).get(0).getPosY() > (this.alienStartY + this.alienSpacingY)) {
-			spawnLine();
+		if(enemies.size() == 0) {
+			this.spawnLine();
 		}
-		
-		while(!isLineAlive(0)) {
-			enemies.remove(0);
-			this.lastLine--;
-		}
-		
-		for(int line = 0; line <= this.lastLine; line++) {
-			for(int column = 0; column < aliensPerLine; column++) {
-				enemies.get(line).get(column).update();
+		else {
+			if(enemies.get(this.lastLine).get(0).getPosY() > (this.alienStartY + this.alienSpacingY)) {
+				spawnLine();
+			}
+			
+			while(!isLineAlive(0)) {
+				enemies.remove(0);
+				this.lastLine--;
+			}
+			
+			for(int line = 0; line <= this.lastLine; line++) {
+				for(int column = 0; column < aliensPerLine; column++) {
+					enemies.get(line).get(column).update();
+				}
 			}
 		}
 	}
