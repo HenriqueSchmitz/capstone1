@@ -2,6 +2,7 @@ package de.openhpi.capstone1.game.controller;
 
 import de.openhpi.capstone1.game.model.Counter;
 import de.openhpi.capstone1.game.view.ShotManager;
+import processing.core.PApplet;
 
 public class CounterController implements Controller {
 
@@ -16,7 +17,7 @@ public class CounterController implements Controller {
 	
 	public void checkMove(int count) {
 		if ((counter.getCount() + count) > 900) {	// MAX displacement
-			counter.updateCount(900 - counter.getCount());
+			counter.updateCount(900 - counter.getCount()); 
 		}
 		else if ((counter.getCount() + count) < 100) {	// MIN displacement
 			counter.updateCount(counter.getCount() - 100);
@@ -24,13 +25,19 @@ public class CounterController implements Controller {
 		else counter.updateCount(count);
 	}
 	
-	public void handleEvent(int count) {
-		if ((count == -5) || (count == 5)) {	// is moving
-			checkMove(count);
+	public void handleEvent(PApplet display) {
+		if (display.key == display.CODED) {	//	moving
+			if (display.keyCode == display.RIGHT) {	// moving right
+				checkMove(5);
+			}
+			else if (display.keyCode == display.LEFT) {	// moving left
+				checkMove(-5);
+			}
 		}
-		else if (count == 0) {	// is shooting
+		if (display.key == ' ') {	// shooting
 			shotManager.friendlyShot(counter.getCount() + 15, 460);
 		}
 	}
+	
 
 }
