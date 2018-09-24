@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import de.openhpi.capstone1.game.graphics.FileReader;
 import processing.core.PApplet;
 
-public class ShotManager extends AbstractView {
+public class DamageManager extends AbstractView {
 
+	private ArrayList<CounterViewMove> players;
 	private ArrayList<AbstractEnemy> enemies;
 	private ArrayList<Shot> friendlyShots;
 	private int minimumShotDistance;
 	
-	public ShotManager(PApplet display) {
+	public DamageManager(PApplet display) {
 		super(display);
+		players = new ArrayList<CounterViewMove>();
 		enemies = new ArrayList<AbstractEnemy>();
 		friendlyShots = new ArrayList<Shot>();
 		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");
@@ -20,6 +22,10 @@ public class ShotManager extends AbstractView {
 	
 	public void addEnemy(AbstractEnemy enemy) {
 		enemies.add(enemy);
+	}
+	
+	public void addPlayer(CounterViewMove player) {
+		players.add(player);
 	}
 	
 	public void friendlyShot(int posX, int posY) {
@@ -41,6 +47,17 @@ public class ShotManager extends AbstractView {
 					if(this.friendlyShots.get(shot).getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
 						this.friendlyShots.remove(shot);
 						targetEnemy.takeDamage();
+						break;
+					}
+				}
+			}
+		}
+		
+		for(CounterViewMove player: this.players) {
+			for(AbstractEnemy targetEnemy: this.enemies) {
+				if(targetEnemy.isAlive()) {
+					if(player.getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
+						targetEnemy.die();
 						break;
 					}
 				}

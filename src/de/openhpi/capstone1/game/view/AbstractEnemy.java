@@ -39,6 +39,10 @@ public abstract class AbstractEnemy extends AbstractView{
 		}
 	}
 	
+	public void die() {
+		this.healthPoints = 0;
+	}
+	
  	public boolean isAlive() {
 		return healthPoints > 0;
 	}

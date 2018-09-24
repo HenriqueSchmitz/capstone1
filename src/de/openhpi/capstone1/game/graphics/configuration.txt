@@ -7,3 +7,4 @@ alienStartY = -50
 aliensPerLine = 11
 shotSpeed = 15
 minimumShotDistance = 30
+gameOverLinePositionY = 530

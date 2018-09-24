@@ -1,13 +1,13 @@
 package de.openhpi.capstone1.game.controller;
 
 import de.openhpi.capstone1.game.model.Counter;
-import de.openhpi.capstone1.game.view.ShotManager;
+import de.openhpi.capstone1.game.view.DamageManager;
 import processing.core.PApplet;
 
 public class CounterControllerStrategy {
 	private Controller counterController;
 	
-	public CounterControllerStrategy(Counter counter, ShotManager shotManager) {
+	public CounterControllerStrategy(Counter counter, DamageManager shotManager) {
 		this.counterController = new CounterController(counter, shotManager);
 	}
 	

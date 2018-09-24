@@ -11,7 +11,7 @@ public class CounterViewLives extends AbstractCounterView{
 	public CounterViewLives(PApplet display, Counter counter) {
 		super(display, counter);
 		this.lives = new Lives();
-		image = new Image(display, "Ship");
+		image = new Image(display, "Heart");
 	}
 	
 	public void displayNumberOfLives() {

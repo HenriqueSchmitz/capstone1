@@ -12,19 +12,22 @@ import de.openhpi.capstone1.game.view.CounterViewStage;
 import de.openhpi.capstone1.game.view.CounterViewText;
 import de.openhpi.capstone1.game.view.EnemySpawner;
 import de.openhpi.capstone1.game.view.MenuScreen;
-import de.openhpi.capstone1.game.view.ShotManager;
+import de.openhpi.capstone1.game.view.DamageManager;
 import processing.core.PApplet;
 
 public class InteractiveCounter extends InteractiveComponent {
 	CounterControllerStrategy counterControllerStrategy;
 	Counter counter;
-	ShotManager shotManager;
+	DamageManager damageManager;
+	CounterViewMove player;
 	
 	public InteractiveCounter(PApplet applet) {
 		game = new ArrayList<AbstractView>();
 		menu = new ArrayList<AbstractView>();
-		shotManager = new ShotManager(applet);
+		damageManager = new DamageManager(applet);
 		view = new String("MenuScreen");
+		
+		
 	}
 	
 	public void addModel() {
@@ -32,23 +35,25 @@ public class InteractiveCounter extends InteractiveComponent {
 	}
 	
 	public void createViews(PApplet applet) {
-		game.add(new CounterViewMove(applet, counter));
+		player = new CounterViewMove(applet, counter);
+		damageManager.addPlayer(player);
+		game.add(player);
 		game.add(new CounterViewText(applet, counter));
 		game.add(new CounterViewStage(applet, counter));
 		game.add(new CounterViewEnemies(applet, counter));
 		game.add(new CounterViewLives(applet, counter));
-		game.add(new EnemySpawner(applet, shotManager));
-		game.add(shotManager);
+		game.add(new EnemySpawner(this, applet, damageManager));
+		game.add(damageManager);
 		menu.add(new MenuScreen(applet));
 	}
 	
 	public void addController() {
-		counterControllerStrategy = new CounterControllerStrategy(counter, shotManager);
+		counterControllerStrategy = new CounterControllerStrategy(counter, damageManager);
 	}
 	
 	public void handleScreen(PApplet display) {
 		if (view.equals("MenuScreen")) {
-			view = "GameScreen";
+			setView("GameScreen");
 		}
 	}
 	

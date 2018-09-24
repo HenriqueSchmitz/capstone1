@@ -1,15 +1,15 @@
 package de.openhpi.capstone1.game.controller;
 
 import de.openhpi.capstone1.game.model.Counter;
-import de.openhpi.capstone1.game.view.ShotManager;
+import de.openhpi.capstone1.game.view.DamageManager;
 import processing.core.PApplet;
 
 public class CounterController implements Controller {
 
 	Counter counter;
-	ShotManager shotManager;	
+	DamageManager shotManager;	
 
-	public CounterController(Counter counter, ShotManager shotManager) { 
+	public CounterController(Counter counter, DamageManager shotManager) { 
 		this.counter = counter;
 		this.counter.updateCount(100);
 		this.shotManager = shotManager;
@@ -26,11 +26,11 @@ public class CounterController implements Controller {
 	}
 	
 	public void handleEvent(PApplet display) {
-		if (display.key == display.CODED) {	//	moving
-			if (display.keyCode == display.RIGHT) {	// moving right
+		if (display.key == PApplet.CODED) {	//	moving
+			if (display.keyCode == PApplet.RIGHT) {	// moving right
 				checkMove(5);
 			}
-			else if (display.keyCode == display.LEFT) {	// moving left
+			else if (display.keyCode == PApplet.LEFT) {	// moving left
 				checkMove(-5);
 			}
 		}

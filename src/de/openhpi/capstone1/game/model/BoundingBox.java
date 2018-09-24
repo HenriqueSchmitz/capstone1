@@ -28,8 +28,8 @@ public class BoundingBox {
 	public boolean checkCollision(BoundingBox target) {
 		int[] targetBox = target.getBoundaries();
 		int[] thisBox = this.getBoundaries();
-		if((thisBox[2] > targetBox[2]) && (thisBox[3] < targetBox[3])) {
-			if((thisBox[0] < targetBox[1]) && (thisBox[1] > targetBox[0])) {
+		if((thisBox[0] > targetBox[0]) && (thisBox[1] < targetBox[1])) {
+			if((thisBox[2] < targetBox[3]) && (thisBox[3] > targetBox[2])) {
 				return true;
 			}
 		}

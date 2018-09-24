@@ -11,6 +11,9 @@ public abstract class InteractiveComponent {
 	protected ArrayList<AbstractView> menu;
 	protected String view;
 	
+	public void setView(String view) {
+		this.view = view;
+	}
 	
 	public void update() {
 		if (view.equals("GameScreen")) {
@@ -22,6 +25,10 @@ public abstract class InteractiveComponent {
 			for (AbstractView view : menu) {
 				view.update(); 
 			}
+		}
+		else if (view.equals("GameOver")) {
+			System.out.println("GameOver screen called");
+			//Insert the game over screen here and delete the println
 		}
 	}
 }
