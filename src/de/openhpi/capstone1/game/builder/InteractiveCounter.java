@@ -40,7 +40,7 @@ public class InteractiveCounter extends InteractiveComponent {
 	}
 	
 	public void createViews(PApplet applet) {
-		player = new Player(applet, counter);
+		player = new Player(this, applet, counter);
 		damageManager.addPlayer(player);
 		game.add(player);
 		game.add(new CounterViewText(applet, counter));
