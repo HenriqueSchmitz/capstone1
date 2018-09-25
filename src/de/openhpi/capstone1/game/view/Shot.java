@@ -30,6 +30,10 @@ public class Shot extends AbstractView {
 		image = new Image(display, "Shot");
 	}
 	
+	public void setDefaultConfigurations() {
+		// not sure what to write here
+	}
+	
 	public int getPosX() {
 		return posX;
 	}

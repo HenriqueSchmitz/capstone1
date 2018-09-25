@@ -6,7 +6,6 @@ import de.openhpi.capstone1.game.graphics.Image;
 import de.openhpi.capstone1.game.logic.Lives;
 import de.openhpi.capstone1.game.model.BoundingBox;
 import de.openhpi.capstone1.game.model.Counter;
-import de.openhpi.capstone1.game.model.Keyboard;
 import processing.core.PApplet;
 
 public class Player extends AbstractCounterView { 
@@ -27,6 +26,10 @@ public class Player extends AbstractCounterView {
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 		this.playerPositionY = screenHeight - endlinePositionFromBottom - image.getSizeY() - 10;
+	}
+	
+	public void setDefaultConfigurations() {
+		lives.setNumberOfLives(3);
 	}
 	
 	public BoundingBox getBoundingBox() {
@@ -56,7 +59,7 @@ public class Player extends AbstractCounterView {
 		}
 		
 		if(!lives.isAlive()) {
-			interactiveCounter.setView("GameOver");
+			interactiveCounter.setView("GameOverScreen");
 		}
 		
 	}

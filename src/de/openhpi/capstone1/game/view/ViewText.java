@@ -1,7 +1,6 @@
 package de.openhpi.capstone1.game.view;
 
 import de.openhpi.capstone1.game.graphics.FileReader;
-import de.openhpi.capstone1.game.model.Counter;
 import processing.core.PApplet;
 
 public class ViewText extends AbstractView {
@@ -21,6 +20,10 @@ public class ViewText extends AbstractView {
 		this.scoreAreaHeight = FileReader.readConfiguration(display, "scoreAreaHeight");
 		this.screenWidth = FileReader.readConfiguration(display, "screenWidth");
 		this.sideBorderSize = FileReader.readConfiguration(display, "sideBorderSize");
+	}
+	
+	public void setDefaultConfigurations() {
+		// not sure what to write here
 	}
 	
 	public void displayCreditTitle() {

@@ -13,9 +13,15 @@ public abstract class InteractiveComponent {
 	public abstract void handleRelease(PApplet display);
 	protected ArrayList<AbstractView> game;
 	protected ArrayList<AbstractView> menu;
-	//protected ArrayList<AbstractView> gameOver;
+	protected ArrayList<AbstractView> gameOver;
 	protected String view;
 	protected Keyboard keyboard;
+	
+	public void setDefaultConfigurations() {
+		for (AbstractView view : game) {
+			view.setDefaultConfigurations(); 
+		}
+	}
 	
 	public void setView(String view) {
 		this.view = view;
@@ -38,14 +44,10 @@ public abstract class InteractiveComponent {
 				view.update(); 
 			}
 		}
-		else if (view.equals("GameOver")) {
-			System.out.println("GameOver screen called");
-			//Insert the game over screen here and delete the println
-			
-			/*for (AbstractView view : gameOver) {
+		else if (view.equals("GameOverScreen")) {
+			for (AbstractView view : gameOver) {
 				view.update(); 
-			}*/
-			
+			}
 		}
 	}
 }

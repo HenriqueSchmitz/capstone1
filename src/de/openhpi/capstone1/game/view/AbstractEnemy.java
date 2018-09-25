@@ -38,17 +38,16 @@ public abstract class AbstractEnemy extends AbstractView{
 	public void takeDamage(Points points) {
 		if(lives.isAlive()) {
 			lives.takeDamage();
-			
+	
 			if (!lives.isAlive()) {
-				points.updateNumberOfAliensDead(1);
+				points.updateScore(this.scoreValue);
 			}
-			
 		}
 	}
 	
 	public void die(Points points) {
 		this.lives.die();
-		points.updateNumberOfAliensDead(1);
+		points.updateScore(this.scoreValue);
 	}
 	
  	public boolean isAlive() {

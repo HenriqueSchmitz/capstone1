@@ -4,11 +4,15 @@ import de.openhpi.capstone1.game.graphics.Image;
 import processing.core.PApplet;
 
 public class MenuScreen extends AbstractView{
-	Image image;
+	private Image image;
 	
 	public MenuScreen(PApplet display) {
 		super(display);
 		image = new Image(display, "Ship");
+	}
+	
+	public void setDefaultConfigurations() {
+		// not sure what to write here
 	}
 	
 	@Override

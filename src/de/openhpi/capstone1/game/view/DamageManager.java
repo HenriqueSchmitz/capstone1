@@ -18,9 +18,14 @@ public class DamageManager extends AbstractView {
 		players = new ArrayList<Player>();
 		enemies = new ArrayList<AbstractEnemy>();
 		friendlyShots = new ArrayList<Shot>();
-		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");
-	
+		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");	
 		this.points = points;
+	}
+	
+	public void setDefaultConfigurations() {
+		enemies.removeAll(enemies);
+		players.removeAll(players);
+		friendlyShots.removeAll(friendlyShots);
 	}
 	
 	public void addEnemy(AbstractEnemy enemy) {
