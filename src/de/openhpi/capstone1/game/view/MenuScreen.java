@@ -18,14 +18,14 @@ public class MenuScreen extends AbstractView{
 	@Override
 	public void update() {
 		display.background(0);
-		display.textSize(120);
+		display.textSize(140);
 		display.fill(255);
-		display.text("SPACE", 260, 200);
-		display.text("INVADERS", 170, 320);
-		display.textSize(30);
-		display.text("CLICK TO START", 320, 410);
-		image.draw(270, 380);
-		image.draw(570, 380);
+		display.text("SPACE", 350, 200);
+		display.text("INVADERS", 230, 350);
+		display.textSize(50);
+		display.text("CLICK TO START", 370, 520);
+		image.draw(300, 480);
+		image.draw(800, 480);
 	}
 
 }
