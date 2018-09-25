@@ -25,15 +25,18 @@ public class EnemySpawner extends AbstractView{
 		this.interactiveCounter = interactiveCounter;
 		enemies = new ArrayList<ArrayList<AbstractEnemy>>();
 		
+		AbstractEnemy exampleAlien = new SpaceInvader(display,0,0);
+		
 		this.damageManager = damageManager;
 		this.aliensPerLine = FileReader.readConfiguration(display, "aliensPerLine");
-		this.alienStartX = FileReader.readConfiguration(display, "alienStartX");
 		this.alienStartY = FileReader.readConfiguration(display, "alienStartY");
 		this.alienSpacingX = FileReader.readConfiguration(display, "alienSpacingX");
 		this.alienSpacingY = FileReader.readConfiguration(display, "alienSpacingY");
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 		this.endlinePosition = screenHeight - endlinePositionFromBottom;
+		int screenWidth = FileReader.readConfiguration(display, "screenWidth");
+		this.alienStartX = (screenWidth - (aliensPerLine-1) * alienSpacingX - exampleAlien.image.getSizeX())/2 ;
 	}
 	
 	private void spawnLine() {

@@ -12,6 +12,8 @@ public class CounterController implements Controller {
 	private Counter counter;
 	private DamageManager shotManager;
 	private int shotStartingY;
+	private int minDisplacement;
+	private int maxDisplacement;
 
 	public CounterController(PApplet display, Counter counter, DamageManager shotManager) { 
 		this.display = display;
@@ -22,14 +24,20 @@ public class CounterController implements Controller {
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 		Image image = new Image(display, "Ship");
 		this.shotStartingY = screenHeight - endlinePositionFromBottom - image.getSizeY();
+		int screenWidth = FileReader.readConfiguration(display, "screenWidth");
+		int sideBorderSize = FileReader.readConfiguration(display, "sideBorderSize");
+		this.maxDisplacement = screenWidth - sideBorderSize - image.getSizeX();
+		this.minDisplacement = sideBorderSize;
+		
+		this.counter.setCount(screenWidth/2);
 	}
 	
 	public void checkMove(int count) {
-		if ((counter.getCount() + count) > 900) {	// MAX displacement
-			counter.updateCount(900 - counter.getCount()); 
+		if ((counter.getCount() + count) > maxDisplacement) {	// MAX displacement
+			counter.updateCount(maxDisplacement - counter.getCount()); 
 		}
-		else if ((counter.getCount() + count) < 100) {	// MIN displacement
-			counter.updateCount(counter.getCount() - 100);
+		else if ((counter.getCount() + count) < minDisplacement) {	// MIN displacement
+			counter.updateCount(counter.getCount() - minDisplacement);
 		}
 		else counter.updateCount(count);
 	}

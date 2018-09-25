@@ -10,9 +10,11 @@ public class ViewText extends AbstractView {
 	private int scoreAreaHeight;
 	private int screenWidth;
 	private int sideBorderSize;
+	private Points points;
 	
-	public ViewText(PApplet display) {
+	public ViewText(PApplet display, Points points) {
 		super(display);
+		this.points = points;
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 		this.endlinePosition = screenHeight - endlinePositionFromBottom;
@@ -39,19 +41,25 @@ public class ViewText extends AbstractView {
 	public void displayScore1Title() {
 		display.textSize(28);
 		display.fill(255);
-		display.text("SCORE <1> ", 110, 40);
+		display.textAlign(PApplet.CENTER);
+		display.text("SCORE <1> ", sideBorderSize*2, 40);
+		display.textAlign(PApplet.LEFT);
 	}
 	
 	public void displayScore2Title() {
 		display.textSize(28);
 		display.fill(255);
-		display.text("SCORE <2> ", 630, 40);
+		display.textAlign(PApplet.CENTER);
+		display.text("SCORE <2> ", screenWidth - sideBorderSize*2, 40);
+		display.textAlign(PApplet.LEFT);
 	}
 	
 	public void displayHighScoreTitle() {
 		display.textSize(28);
 		display.fill(255);
-		display.text("HI-SCORE", 380, 40);
+		display.textAlign(PApplet.CENTER);
+		display.text("HI-SCORE", screenWidth/2, 40);
+		display.textAlign(PApplet.LEFT);
 	}
 	
 	@Override
@@ -62,5 +70,6 @@ public class ViewText extends AbstractView {
 		displayScore1Title();
 		displayScore2Title();
 		displayHighScoreTitle();
+		this.points.update();
 	}
 }

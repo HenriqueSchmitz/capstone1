@@ -20,7 +20,6 @@ public class InteractiveCounter extends InteractiveComponent {
 	Counter counter;
 	DamageManager damageManager;
 	Player player;
-	
 	Points points;
 	
 	public InteractiveCounter(PApplet applet) {
@@ -28,8 +27,8 @@ public class InteractiveCounter extends InteractiveComponent {
 		menu = new ArrayList<AbstractView>();
 		
 		points = new Points(applet);
-		
 		damageManager = new DamageManager(applet, points);
+		
 		view = new String("MenuScreen");
 		
 		
@@ -47,8 +46,7 @@ public class InteractiveCounter extends InteractiveComponent {
 		game.add(new ViewLives(applet, counter, player));
 		game.add(new EnemySpawner(this, applet, damageManager));
 		game.add(damageManager);
-		game.add(points);
-		game.add(new ViewText(applet));
+		game.add(new ViewText(applet, points));
 		menu.add(new MenuScreen(applet));
 	}
 	
