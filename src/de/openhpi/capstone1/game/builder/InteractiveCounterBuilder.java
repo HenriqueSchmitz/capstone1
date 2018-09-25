@@ -12,8 +12,8 @@ public class InteractiveCounterBuilder implements Builder {
 	}
 
 	@Override
-	public void buildModel() {
-		iCounter.addModel();
+	public void buildModel(PApplet applet) {
+		iCounter.addModel(applet);
 	}
 
 	@Override

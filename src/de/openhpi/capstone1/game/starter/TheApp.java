@@ -38,7 +38,7 @@ public class TheApp extends PApplet {
 	//Add further user interaction as necessary
 	@Override
 	public void keyPressed() {
-		interactiveCounter.handleEvent(this);
+		interactiveCounter.handlePress(this);
 	}
 	
 	public void mousePressed() {
@@ -47,6 +47,6 @@ public class TheApp extends PApplet {
 	
 	@Override
 	public void keyReleased() {
-		
+		interactiveCounter.handleRelease(this);
 	}
 }

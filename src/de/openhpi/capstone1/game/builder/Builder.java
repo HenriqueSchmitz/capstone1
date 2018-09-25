@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 public interface Builder {
 	public void buildComponent(PApplet applet);
-	public void buildModel(); 
+	public void buildModel(PApplet applet); 
 	public void buildView(PApplet applet);
 	public void buildController(PApplet applet);
 	

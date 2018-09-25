@@ -6,6 +6,7 @@ import de.openhpi.capstone1.game.graphics.Image;
 import de.openhpi.capstone1.game.logic.Lives;
 import de.openhpi.capstone1.game.model.BoundingBox;
 import de.openhpi.capstone1.game.model.Counter;
+import de.openhpi.capstone1.game.model.Keyboard;
 import processing.core.PApplet;
 
 public class Player extends AbstractCounterView { 
