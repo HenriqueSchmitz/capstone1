@@ -48,6 +48,7 @@ public class InteractiveCounter extends InteractiveComponent {
 		players.add(new Player(this, applet));
 		points.add(new Points(applet));
 		keyboards.add(new Keyboard(applet));
+		keyboards.get(players.size() - 1).setPlayer(players.size() - 1);
 		keyboards.get(players.size() - 1).addDamageManager(damageManager);
 		keyboards.get(players.size() - 1).addCounter(applet, players.get(players.size() - 1).getCounter());
 		damageManager.addPlayer(players.get(players.size() - 1));
@@ -61,7 +62,7 @@ public class InteractiveCounter extends InteractiveComponent {
 		menu = new ArrayList<AbstractView>();	
 		gameOver = new ArrayList<AbstractView>();
 		keyboards = new ArrayList<Keyboard>();
-		damageManager = new DamageManager(applet, points.get(0));
+		damageManager = new DamageManager(applet, points);
 		counterControllerStrategy = new CounterControllerStrategy();
 		view = new String("MenuScreen");	
 	}

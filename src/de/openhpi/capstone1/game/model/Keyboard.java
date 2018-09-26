@@ -15,6 +15,7 @@ public class Keyboard {
 	private int shotStartingY;
 	private int maxDisplacement;
 	private int minDisplacement;
+	private int player;
 	
 	public Keyboard(PApplet display) {
 		right = false;
@@ -74,6 +75,10 @@ public class Keyboard {
 		space = false;
 	}
 	
+	public void setPlayer(int player) {
+		this.player = player;
+	}
+	
 	public void update() {
 		try {
 			if(right) {
@@ -82,7 +87,7 @@ public class Keyboard {
 				checkMove(-5);
 			}
 			if(space) {
-				damageManager.friendlyShot(counter.getCount() + 15, this.shotStartingY-20);
+				damageManager.friendlyShot(counter.getCount() + 15, this.shotStartingY - 20, this.player);
 			}
 		} catch(NullPointerException e) {
 			System.out.println(e.getMessage());

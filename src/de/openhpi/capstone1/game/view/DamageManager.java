@@ -12,9 +12,9 @@ public class DamageManager extends AbstractView {
 	private ArrayList<Shot> friendlyShots;
 	private ArrayList<Shot> enemyShots;
 	private int minimumShotDistance;
-	private Points points;
+	private ArrayList<Points> points;
 	
-	public DamageManager(PApplet display, Points points) {
+	public DamageManager(PApplet display, ArrayList<Points> points) {
 		super(display);
 		players = new ArrayList<Player>();
 		enemies = new ArrayList<AbstractEnemy>();
@@ -38,20 +38,20 @@ public class DamageManager extends AbstractView {
 		players.add(player);
 	}
 	
-	public void friendlyShot(int posX, int posY) {
+	public void friendlyShot(int posX, int posY, int player) {
 		if(friendlyShots.size() == 0) {
-			friendlyShots.add(new Shot(this.display, posX, posY, true));
+			friendlyShots.add(new Shot(this.display, posX, posY, true, player));
 		}
 		else {
 			Shot mostRecentShot = friendlyShots.get(friendlyShots.size() - 1);
 			if(mostRecentShot.movement.getPosition() < mostRecentShot.posY - minimumShotDistance) {
-				friendlyShots.add(new Shot(this.display, posX, posY, true));
+				friendlyShots.add(new Shot(this.display, posX, posY, true, player));
 			}
 		}
 	}
 	
 	public void enemyShot(int posX, int posY) {
-		enemyShots.add(new Shot(this.display, posX, posY, false));
+		enemyShots.add(new Shot(this.display, posX, posY, false, 0));
 	}
 	
 	public void update() {
@@ -69,8 +69,8 @@ public class DamageManager extends AbstractView {
 			for(AbstractEnemy targetEnemy: this.enemies) {
 				if(targetEnemy.isAlive()) {
 					if(this.friendlyShots.get(shot).getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
+						targetEnemy.takeDamage(points.get(friendlyShots.get(shot).getIdentificationNumber()));
 						this.friendlyShots.remove(shot);
-						targetEnemy.takeDamage(points);
 						break;
 					}
 				}
@@ -89,12 +89,12 @@ public class DamageManager extends AbstractView {
 			}
 		}
 		
-		for(Player player: this.players) {
+		for(int player = 0; player < this.players.size(); player++) {
 			for(AbstractEnemy targetEnemy: this.enemies) {
 				if(targetEnemy.isAlive()) {
-					if(player.getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
-						targetEnemy.die(points);
-						player.takeDamage();
+					if(players.get(player).getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
+						targetEnemy.die(points.get(player));
+						players.get(player).takeDamage();
 						break;
 					}
 				}

@@ -14,20 +14,26 @@ public class Shot extends AbstractView {
 	protected int posX;
 	protected int posY;
 	protected boolean isFriendly;
+	protected int identificationNumber;
 	
-	public Shot(PApplet display, int posX, int posY, boolean isFriendly) {
+	public Shot(PApplet display, int posX, int posY, boolean isFriendly, int identificationNumber) {
 		super(display);
 		this.boundingBox = new BoundingBox();
 		
 		this.posX = posX;
 		this.posY = posY;
 		this.isFriendly = isFriendly;
+		this.identificationNumber = identificationNumber;
 		double shotSpeed = FileReader.readConfigurationDouble(display, "shotSpeed");
 		movement = new Mover(display, posY, shotSpeed);
 		if(this.isFriendly) {
 			movement.setDirectionNegative();
 		}
 		image = new Image(display, "Shot");
+	}
+	
+	public int getIdentificationNumber() {
+		return this.identificationNumber;
 	}
 	
 	public void setDefaultConfigurations() {

@@ -14,9 +14,11 @@ public class ShooterAlien extends AbstractAlien{
 	}
 	
 	public void shoot(DamageManager damageManager) {
-		if(this.display.millis() > lastShotTime + 3000) {
-			damageManager.enemyShot(this.posX + (this.image.getSizeX()/2), this.movement.getPosition() + this.image.getSizeY());
-			lastShotTime = this.display.millis();
+		if(this.isAlive()) {
+			if(this.display.millis() > lastShotTime + 3000) {
+				damageManager.enemyShot(this.posX + (this.image.getSizeX()/2), this.movement.getPosition() + this.image.getSizeY());
+				lastShotTime = this.display.millis();
+			}
 		}
 	}
 	
