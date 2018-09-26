@@ -10,25 +10,25 @@ public class GameOverScreen extends AbstractView{
 	}
 	
 	public void setDefaultConfigurations() {
-		// not sure what to write here
+		
 	}
 	
 	public void showOptions() {
 		display.textSize(40);
 		display.fill(255);
-		display.text("CLICK TO PLAY AGAIN", 430, 600);
+		display.text("CLICK TO PLAY AGAIN", 330, 600);
 	}
 	
 	public void showHighScore() {
 		display.textSize(60);
 		display.fill(255);
 		if (points.getIsNewHighScore()) {
-			display.text("NEW HIGH SCORE", 430, 400);
+			display.text("NEW HIGH SCORE", 300, 380);
 		}
 		else {
-			display.text("HIGH SCORE", 430, 400);
+			display.text("HIGH SCORE", 350, 380);
 		}
-		points.pointSystemDesign(points.getHighScore(), 600, 500);
+		points.pointSystemDesign(points.getHighScore(), 520, 500);
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class GameOverScreen extends AbstractView{
 		display.background(0);
 		display.textSize(120);
 		display.fill(255);
-		display.text("GAME OVER", 180, 200);
+		display.text("GAME OVER", 200, 200);
 		showHighScore();
 		showOptions();		
 	}

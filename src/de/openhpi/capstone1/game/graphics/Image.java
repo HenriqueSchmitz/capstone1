@@ -7,11 +7,13 @@ public class Image {
 	private PApplet display;
 	private int[][] image;
 	private int pixelSize;
+	private String imageName;
 	
 	public Image(PApplet display, String imageName) {
 		this.display = display;
 		this.image = FileReader.readImage(display, imageName);
 		this.pixelSize = FileReader.readConfiguration(display, "pixelSize");
+		this.imageName = imageName;
 	}
 	
 	public void draw(Object posX, Object posY) {
@@ -34,6 +36,14 @@ public class Image {
 	
 	public int getSizeY() {
 		return this.image.length * pixelSize;
+	}
+	
+	public void updateImage(String imageName) {
+		this.image = FileReader.readImage(display, imageName);
+	}
+	
+	public String getImageName() {
+		return this.imageName;
 	}
 	
 }

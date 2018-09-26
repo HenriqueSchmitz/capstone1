@@ -1,7 +1,6 @@
 package de.openhpi.capstone1.game.view;
 
 import java.util.ArrayList;
-
 import de.openhpi.capstone1.game.aliens.ShooterAlien;
 import de.openhpi.capstone1.game.aliens.SpaceInvader;
 import de.openhpi.capstone1.game.builder.InteractiveCounter;
