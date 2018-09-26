@@ -14,57 +14,91 @@ import de.openhpi.capstone1.game.view.Player;
 import de.openhpi.capstone1.game.view.Points;
 import de.openhpi.capstone1.game.view.Stage;
 import de.openhpi.capstone1.game.view.ViewLives;
+import de.openhpi.capstone1.game.view.ViewPoints;
 import de.openhpi.capstone1.game.view.ViewText;
 import processing.core.PApplet;
 
 
 public class InteractiveCounter extends InteractiveComponent {
 	private CounterControllerStrategy counterControllerStrategy;
-	private Counter counter;
-	private DamageManager damageManager;
-	private Player player;
-	private Points points;
+	private ArrayList<Counter> counters;
+	private ArrayList<DamageManager> damageManagers;
+	private ArrayList<Player> players;
+	private ArrayList<Points> points;
 	
 	public InteractiveCounter(PApplet applet) {
-		points = new Points(applet);
+		points = new ArrayList<Points>();
+		points.add(new Points(applet));
+		//points.add(new Points(applet));
 		this.constructor(applet);
+	}
+	
+	private void createSecondPlayer(PApplet applet) {
+		points.add(new Points(applet));
+		keyboards.add(new Keyboard(applet));
+		damageManagers.add(new DamageManager(applet, points.get(1)));
+		keyboards.get(1).addDamageManager(damageManagers.get(1));
+		counters.add(new Counter(applet));
+		keyboards.get(1).addCounter(applet, counters.get(1));
+		players.add(new Player(this, applet, counters.get(1)));
+		damageManagers.get(1).addPlayer(players.get(1));
+		counterControllerStrategy.addSecondPlayer(keyboards, damageManagers);
+		game.add(players.get(1));
+		game.add(damageManagers.get(1));
+		game.add(points.get(1));
 	}
 	
 	private void constructor(PApplet applet) {
 		game = new ArrayList<AbstractView>();
 		menu = new ArrayList<AbstractView>();	
 		gameOver = new ArrayList<AbstractView>();
-		keyboard = new Keyboard(applet);
-		damageManager = new DamageManager(applet, points);
-		keyboard.addDamageManager(damageManager);		
+		keyboards = new ArrayList<Keyboard>();
+		keyboards.add(new Keyboard(applet));
+		//keyboards.add(new Keyboard(applet));
+		damageManagers = new ArrayList<DamageManager>();
+		damageManagers.add(new DamageManager(applet, points.get(0)));
+		//damageManagers.add(new DamageManager(applet, points.get(1)));
+		keyboards.get(0).addDamageManager(damageManagers.get(0));
+		//keyboards.get(1).addDamageManager(damageManagers.get(1));
 		view = new String("MenuScreen");	
 	}
 	
 	public void addModel(PApplet applet) {
-		counter = new Counter(applet);
-		keyboard.addCounter(applet, counter);
+		counters = new ArrayList<Counter>();
+		counters.add(new Counter(applet));
+		//counters.add(new Counter(applet));
+		keyboards.get(0).addCounter(applet, counters.get(0));
+		//keyboards.get(1).addCounter(applet, counters.get(1));
 	}
 	
 	public void createViews(PApplet applet) {
-		player = new Player(this, applet, counter);
-		damageManager.addPlayer(player);
-		game.add(player);
+		players = new ArrayList<Player>();
+		players.add(new Player(this, applet, counters.get(0)));
+		//players.add(new Player(this, applet, counters.get(1)));
+		ViewPoints viewPoint = new ViewPoints(applet, points);
+		damageManagers.get(0).addPlayer(players.get(0));
+		//damageManagers.get(1).addPlayer(players.get(1));
+		game.addAll(players);
 		game.add(new Stage(applet));
-		game.add(new ViewLives(applet, counter, player));
-		game.add(new EnemySpawner(this, applet, damageManager, points));
-		game.add(damageManager);
+		game.add(new ViewLives(applet, players));
+		game.add(new EnemySpawner(this, applet, damageManagers, points));
+		game.addAll(damageManagers);
 		game.add(new ViewText(applet, points));
-		game.add(points);
+		game.addAll(points);
+		game.add(viewPoint);
 		menu.add(new MenuScreen(applet));
-		gameOver.add(new GameOverScreen(applet, points));
+		gameOver.add(new GameOverScreen(applet, points, viewPoint));
 	}
 	
 	public void addController(PApplet applet) {
-		counterControllerStrategy = new CounterControllerStrategy(applet, keyboard, damageManager);
+		counterControllerStrategy = new CounterControllerStrategy(applet, keyboards, damageManagers);
 	}
 	
 	public void handleScreen(PApplet display) {
 		if (view.equals("MenuScreen")) {
+			if ((display.mouseX >= 330) && (display.mouseX <= 330 + 480) && (display.mouseY >= 550) && (display.mouseY <= 550 + 100)) {
+				createSecondPlayer(display);
+			}
 			setView("GameScreen");
 		}
 		else if (view.equals("GameOverScreen")) {
@@ -75,7 +109,9 @@ public class InteractiveCounter extends InteractiveComponent {
 	
 	
 	public void setDefaultConfigurations(PApplet display) {
-		points.setDefaultConfigurations();
+		for (Points point: points) {
+			point.setDefaultConfigurations();
+		}
 		this.constructor(display);
 		this.addModel(display);
 		this.createViews(display);

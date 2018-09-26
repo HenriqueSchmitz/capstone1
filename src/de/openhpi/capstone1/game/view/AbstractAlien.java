@@ -1,4 +1,4 @@
-/*package de.openhpi.capstone1.game.view;
+package de.openhpi.capstone1.game.view;
 
 import de.openhpi.capstone1.game.graphics.FileReader;
 import de.openhpi.capstone1.game.model.Mover;
@@ -18,9 +18,9 @@ public abstract class AbstractAlien extends AbstractEnemy{
 			image.draw(posX, movement.getPosition());
 		}
 	}
-}*/
+}
 
-package de.openhpi.capstone1.game.view;
+/*package de.openhpi.capstone1.game.view;
 
 import de.openhpi.capstone1.game.graphics.FileReader;
 import de.openhpi.capstone1.game.model.Mover;
@@ -50,4 +50,4 @@ public abstract class AbstractAlien extends AbstractEnemy{
 			}
 		}
 	}
-}
+}*/

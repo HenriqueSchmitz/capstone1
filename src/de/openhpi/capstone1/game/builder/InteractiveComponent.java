@@ -15,7 +15,7 @@ public abstract class InteractiveComponent {
 	protected ArrayList<AbstractView> menu;
 	protected ArrayList<AbstractView> gameOver;
 	protected String view;
-	protected Keyboard keyboard;
+	protected ArrayList<Keyboard> keyboards;
 	
 	public void setDefaultConfigurations() {
 		for (AbstractView view : game) {
@@ -29,7 +29,9 @@ public abstract class InteractiveComponent {
 	
 	public void update() {
 		try {
-			keyboard.update();
+			for (Keyboard keyboard: keyboards) {
+				keyboard.update();
+			}
 		} catch(NullPointerException e) {
 			
 		}

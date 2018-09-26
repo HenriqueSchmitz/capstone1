@@ -1,20 +1,18 @@
 package de.openhpi.capstone1.game.view;
 
+import java.util.ArrayList;
 import de.openhpi.capstone1.game.graphics.FileReader;
 import de.openhpi.capstone1.game.graphics.Image;
-import de.openhpi.capstone1.game.logic.Lives;
-import de.openhpi.capstone1.game.model.Counter;
 import processing.core.PApplet;
 
 public class ViewLives extends AbstractView{
-	
-	protected Lives lives;
+	protected ArrayList<Player> players;
 	protected Image image;
 	protected int endlinePosition;
 	
-	public ViewLives(PApplet display, Counter counter, Player player) {
+	public ViewLives(PApplet display, ArrayList<Player> players) {
 		super(display);
-		this.lives = player.getLives();
+		this.players = players;
 		this.image = new Image(display, "Heart");
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
@@ -28,15 +26,22 @@ public class ViewLives extends AbstractView{
 	public void displayNumberOfLives() {
 		display.textSize(40);
 		display.fill(255);
-		display.text(lives.getNumberOfLives() + "", 115, this.endlinePosition + 40);	// display.text (text, x, y);
+		int x = 115;
+		for (Player player: players) {
+			display.text(player.getLives().getNumberOfLives() + "", x, this.endlinePosition + 40);	// display.text (text, x, y);
+			x = 750;
+		}
 	}
 	
 	public void displayLives() {
-		int x = 160;
-		for (int live = 0; live < lives.getNumberOfLives(); live++) {
-			display.fill(255);
-			image.draw(x, this.endlinePosition + 10);
-			x = x + 50;
+		int x = 160;	
+		for (Player player: players) {
+			for (int live = 0; live < player.getLives().getNumberOfLives(); live++) {
+				display.fill(255);
+				image.draw(x, this.endlinePosition + 10);
+				x = x + 50;
+			}
+			x = 800;
 		}
 	}
 	

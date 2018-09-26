@@ -1,5 +1,7 @@
 package de.openhpi.capstone1.game.view;
 
+import java.util.ArrayList;
+
 import de.openhpi.capstone1.game.graphics.FileReader;
 import processing.core.PApplet;
 
@@ -9,9 +11,9 @@ public class ViewText extends AbstractView {
 	private int scoreAreaHeight;
 	private int screenWidth;
 	private int sideBorderSize;
-	private Points points;
+	private ArrayList<Points> points;
 	
-	public ViewText(PApplet display, Points points) {
+	public ViewText(PApplet display, ArrayList<Points> points) {
 		super(display);
 		this.points = points;
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
@@ -73,6 +75,8 @@ public class ViewText extends AbstractView {
 		displayScore1Title();
 		displayScore2Title();
 		displayHighScoreTitle();
-		this.points.update();
+		for (Points point: points) {
+			point.update();
+		}
 	}
 }

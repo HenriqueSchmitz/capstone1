@@ -4,12 +4,12 @@ import de.openhpi.capstone1.game.model.Keyboard;
 import de.openhpi.capstone1.game.view.DamageManager;
 import processing.core.PApplet;
 
-public class CounterController implements Controller {
+public class CounterController1 implements Controller {
 
 	private Keyboard keyboard;
 
 
-	public CounterController(Keyboard keyboard, DamageManager shotManager) { 
+	public CounterController1(Keyboard keyboard, DamageManager shotManager) { 
 		this.keyboard = keyboard;
 	}
 
