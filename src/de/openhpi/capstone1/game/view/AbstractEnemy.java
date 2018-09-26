@@ -61,6 +61,10 @@ public abstract class AbstractEnemy extends AbstractView{
  	public int getPosY() {
  		return this.movement.getPosition();
  	}
+ 	
+ 	public Image getImage() {
+ 		return this.image;
+ 	}
 	
  	public BoundingBox getBoundingBox() {
  		boundingBox.update(this.getPosX(), this.getPosY(), image.getSizeX(), image.getSizeY());

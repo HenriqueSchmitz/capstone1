@@ -1,10 +1,11 @@
 package de.openhpi.capstone1.game.view;
 
 import java.util.ArrayList;
-import de.openhpi.capstone1.game.aliens.ShooterAlien;
+
 import de.openhpi.capstone1.game.aliens.SpaceInvader;
 import de.openhpi.capstone1.game.builder.InteractiveCounter;
 import de.openhpi.capstone1.game.graphics.FileReader;
+import de.openhpi.capstone1.game.model.FormationManager;
 import processing.core.PApplet;
 
 public class EnemySpawner extends AbstractView{
@@ -13,6 +14,7 @@ public class EnemySpawner extends AbstractView{
 	private ArrayList<ArrayList<AbstractEnemy>> enemies;
 	private DamageManager damageManager;
 	private ArrayList<Points> points;
+	private FormationManager formationManager;
 	private int aliensPerLine;
 	private int alienStartX;
 	private int alienStartY;
@@ -25,6 +27,7 @@ public class EnemySpawner extends AbstractView{
 		super(display);
 		this.interactiveCounter = interactiveCounter;
 		enemies = new ArrayList<ArrayList<AbstractEnemy>>();
+		formationManager = new FormationManager(display, points);
 		
 		AbstractEnemy exampleAlien = new SpaceInvader(display,0,0);
 		
@@ -50,13 +53,14 @@ public class EnemySpawner extends AbstractView{
 	}
 	
 	private void spawnLine() {
-		enemies.add(new ArrayList<AbstractEnemy>());
+		enemies.addAll(formationManager.getFormation(damageManager));
+//		enemies.add(new ArrayList<AbstractEnemy>());
 		this.lastLine = enemies.size() - 1;
-		for(int column = 0; column < aliensPerLine; column++) {
-			enemies.get(lastLine).add(new ShooterAlien(display, alienStartX + column * alienSpacingX, alienStartY));
-			this.damageManager.addEnemy(enemies.get(lastLine).get(column));
-			enemies.get(lastLine).get(column).setSpawnTime(enemies.get(lastLine).get(0).getSpawnTime());;
-		}
+//		for(int column = 0; column < aliensPerLine; column++) {
+//			enemies.get(lastLine).add(new ShooterAlien(display, alienStartX + column * alienSpacingX, alienStartY));
+//			this.damageManager.addEnemy(enemies.get(lastLine).get(column));
+//			enemies.get(lastLine).get(column).setSpawnTime(enemies.get(lastLine).get(0).getSpawnTime());;
+//		}
 	}
 	
 	private boolean isLineAlive(int line) {
