@@ -17,6 +17,7 @@ import de.openhpi.capstone1.game.view.ViewLives;
 import de.openhpi.capstone1.game.view.ViewText;
 import processing.core.PApplet;
 
+
 public class InteractiveCounter extends InteractiveComponent {
 	private CounterControllerStrategy counterControllerStrategy;
 	private Counter counter;
@@ -25,11 +26,15 @@ public class InteractiveCounter extends InteractiveComponent {
 	private Points points;
 	
 	public InteractiveCounter(PApplet applet) {
+		points = new Points(applet);
+		this.constructor(applet);
+	}
+	
+	private void constructor(PApplet applet) {
 		game = new ArrayList<AbstractView>();
 		menu = new ArrayList<AbstractView>();	
 		gameOver = new ArrayList<AbstractView>();
 		keyboard = new Keyboard(applet);
-		points = new Points(applet);
 		damageManager = new DamageManager(applet, points);
 		keyboard.addDamageManager(damageManager);		
 		view = new String("MenuScreen");	
@@ -64,8 +69,17 @@ public class InteractiveCounter extends InteractiveComponent {
 		}
 		else if (view.equals("GameOverScreen")) {
 			setView("GameScreen");
-			setDefaultConfigurations();
+			setDefaultConfigurations(display);
 		}
+	}
+	
+	
+	public void setDefaultConfigurations(PApplet display) {
+		points.setDefaultConfigurations();
+		this.constructor(display);
+		this.addModel(display);
+		this.createViews(display);
+		this.addController(display);
 	}
 	
 	@Override

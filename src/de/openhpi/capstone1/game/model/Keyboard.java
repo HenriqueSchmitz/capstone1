@@ -82,7 +82,7 @@ public class Keyboard {
 				checkMove(-5);
 			}
 			if(space) {
-				damageManager.friendlyShot(counter.getCount() + 15, this.shotStartingY - 10);
+				damageManager.friendlyShot(counter.getCount() + 15, this.shotStartingY-20);
 			}
 		} catch(NullPointerException e) {
 			System.out.println(e.getMessage());
