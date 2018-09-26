@@ -16,8 +16,8 @@ public class Player extends AbstractCounterView {
 	private InteractiveCounter interactiveCounter;
 	private int playerPositionY;
 	
-	public Player(InteractiveCounter interactiveCounter, PApplet display, Counter counter) {
-		super(display, counter);
+	public Player(InteractiveCounter interactiveCounter, PApplet display) {
+		super(display, new Counter(display));
 		this.interactiveCounter = interactiveCounter;
 		this.lives = new Lives();
 		this.boundingBox = new BoundingBox();
@@ -26,6 +26,10 @@ public class Player extends AbstractCounterView {
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 		this.playerPositionY = screenHeight - endlinePositionFromBottom - image.getSizeY() - 10;
+	}
+	
+	public Counter getCounter() {
+		return this.counter;
 	}
 	
 	public void setDefaultConfigurations() {
@@ -39,6 +43,10 @@ public class Player extends AbstractCounterView {
 	
 	public Lives getLives() {
 		return this.lives;
+	}
+	
+	public boolean isAlive() {
+		return this.lives.isAlive();
 	}
 	
 	public void takeDamage() {

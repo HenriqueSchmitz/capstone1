@@ -9,9 +9,8 @@ import processing.core.PApplet;
 public class CounterControllerStrategy {
 	private ArrayList<Controller> controllers;
 	
-	public CounterControllerStrategy(PApplet display, ArrayList<Keyboard> keyboards, ArrayList<DamageManager> shotManagers) {
+	public CounterControllerStrategy() {
 		controllers = new ArrayList<Controller>();
-		controllers.add(new CounterController2(keyboards.get(0), shotManagers.get(0)));
 	}
 	
 	public void handleEvent(PApplet display) {
@@ -32,8 +31,13 @@ public class CounterControllerStrategy {
 		}
 	}
 	
-	public void addSecondPlayer( ArrayList<Keyboard> keyboards, ArrayList<DamageManager> shotManagers) {
-		controllers.add(new CounterController1(keyboards.get(1), shotManagers.get(1)));
+	public void addPlayer( Keyboard keyboard, DamageManager damageManager) {
+		if(controllers.size() == 0) {
+			controllers.add(new CounterController2(keyboard, damageManager));
+		}
+		else {
+			controllers.add(new CounterController1(keyboard, damageManager));
+		}
 	}
 	
 	/*private Controller counterController1;

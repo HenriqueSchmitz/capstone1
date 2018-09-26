@@ -55,12 +55,34 @@ public class DamageManager extends AbstractView {
 	}
 	
 	public void update() {
+		for(int friendlyShot = 0; friendlyShot < friendlyShots.size(); friendlyShot++) {
+			for(int enemyShot = 0; enemyShot < enemyShots.size(); enemyShot++) {
+				if(this.friendlyShots.get(friendlyShot).getBoundingBox().checkCollision(enemyShots.get(enemyShot).getBoundingBox())) {
+					this.friendlyShots.remove(friendlyShot);
+					this.enemyShots.remove(enemyShot);
+					break;
+				}
+			}
+		}
+		
 		for(int shot = 0; shot < friendlyShots.size(); shot++) {
 			for(AbstractEnemy targetEnemy: this.enemies) {
 				if(targetEnemy.isAlive()) {
 					if(this.friendlyShots.get(shot).getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
 						this.friendlyShots.remove(shot);
 						targetEnemy.takeDamage(points);
+						break;
+					}
+				}
+			}
+		}
+		
+		for(int shot = 0; shot < enemyShots.size(); shot++) {
+			for(Player targetPlayer: this.players) {
+				if(targetPlayer.isAlive()) {
+					if(this.enemyShots.get(shot).getBoundingBox().checkCollision(targetPlayer.getBoundingBox())) {
+						this.enemyShots.remove(shot);
+						targetPlayer.takeDamage();
 						break;
 					}
 				}

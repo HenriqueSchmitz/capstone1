@@ -11,7 +11,7 @@ public class EnemySpawner extends AbstractView{
 
 	private InteractiveCounter interactiveCounter;
 	private ArrayList<ArrayList<AbstractEnemy>> enemies;
-	private ArrayList<DamageManager> damageManagers;
+	private DamageManager damageManager;
 	private ArrayList<Points> points;
 	private int aliensPerLine;
 	private int alienStartX;
@@ -21,14 +21,14 @@ public class EnemySpawner extends AbstractView{
 	private int lastLine;
 	private int endlinePosition;
 	
-	public EnemySpawner(InteractiveCounter interactiveCounter, PApplet display, ArrayList<DamageManager> damageManagers, ArrayList<Points> points){
+	public EnemySpawner(InteractiveCounter interactiveCounter, PApplet display, DamageManager damageManager, ArrayList<Points> points){
 		super(display);
 		this.interactiveCounter = interactiveCounter;
 		enemies = new ArrayList<ArrayList<AbstractEnemy>>();
 		
 		AbstractEnemy exampleAlien = new SpaceInvader(display,0,0);
 		
-		this.damageManagers = damageManagers;
+		this.damageManager = damageManager;
 		this.aliensPerLine = FileReader.readConfiguration(display, "aliensPerLine");
 		this.alienStartY = FileReader.readConfiguration(display, "alienStartY");
 		this.alienSpacingX = FileReader.readConfiguration(display, "alienSpacingX");
@@ -54,11 +54,7 @@ public class EnemySpawner extends AbstractView{
 		this.lastLine = enemies.size() - 1;
 		for(int column = 0; column < aliensPerLine; column++) {
 			enemies.get(lastLine).add(new ShooterAlien(display, alienStartX + column * alienSpacingX, alienStartY));
-			
-			for (DamageManager damageManager: damageManagers) {
-				//this.damageManager.addEnemy(enemies.get(lastLine).get(column));
-				damageManager.addEnemy(enemies.get(lastLine).get(column));
-			}
+			this.damageManager.addEnemy(enemies.get(lastLine).get(column));
 			enemies.get(lastLine).get(column).setSpawnTime(enemies.get(lastLine).get(0).getSpawnTime());;
 		}
 	}
@@ -100,9 +96,7 @@ public class EnemySpawner extends AbstractView{
 		}
 		
 		for(AbstractEnemy alien: enemies.get(0)) {
-			for (DamageManager damageManager: damageManagers) {
-				alien.shoot(damageManager);
-			}
+			alien.shoot(damageManager);
 		}
 		
 		if(isGameOver()) {
