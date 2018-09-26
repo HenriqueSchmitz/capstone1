@@ -1,6 +1,7 @@
 package de.openhpi.capstone1.game.aliens;
 
 import de.openhpi.capstone1.game.view.AbstractAlien;
+import de.openhpi.capstone1.game.view.DamageManager;
 import processing.core.PApplet;
 
 public class SpaceInvader extends AbstractAlien{
@@ -9,7 +10,7 @@ public class SpaceInvader extends AbstractAlien{
 		super(display, posX, posY, "SpaceInvader");
 	}
 	
-	public void attack() {
+	public void shoot(DamageManager damageManager) {
 		
 	}
 	

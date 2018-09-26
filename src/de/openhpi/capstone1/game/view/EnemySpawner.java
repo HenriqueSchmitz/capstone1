@@ -2,6 +2,7 @@ package de.openhpi.capstone1.game.view;
 
 import java.util.ArrayList;
 
+import de.openhpi.capstone1.game.aliens.ShooterAlien;
 import de.openhpi.capstone1.game.aliens.SpaceInvader;
 import de.openhpi.capstone1.game.builder.InteractiveCounter;
 import de.openhpi.capstone1.game.graphics.FileReader;
@@ -53,7 +54,7 @@ public class EnemySpawner extends AbstractView{
 		enemies.add(new ArrayList<AbstractEnemy>());
 		this.lastLine = enemies.size() - 1;
 		for(int column = 0; column < aliensPerLine; column++) {
-			enemies.get(lastLine).add(new SpaceInvader(display, alienStartX + column * alienSpacingX, alienStartY));
+			enemies.get(lastLine).add(new ShooterAlien(display, alienStartX + column * alienSpacingX, alienStartY));
 			this.damageManager.addEnemy(enemies.get(lastLine).get(column));
 			enemies.get(lastLine).get(column).setSpawnTime(enemies.get(lastLine).get(0).getSpawnTime());;
 		}
@@ -93,6 +94,10 @@ public class EnemySpawner extends AbstractView{
 					enemies.get(line).get(column).update();
 				}
 			}
+		}
+		
+		for(AbstractEnemy alien: enemies.get(0)) {
+			alien.shoot(damageManager);
 		}
 		
 		if(isGameOver()) {

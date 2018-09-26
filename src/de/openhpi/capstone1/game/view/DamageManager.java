@@ -10,6 +10,7 @@ public class DamageManager extends AbstractView {
 	private ArrayList<Player> players;
 	private ArrayList<AbstractEnemy> enemies;
 	private ArrayList<Shot> friendlyShots;
+	private ArrayList<Shot> enemyShots;
 	private int minimumShotDistance;
 	private Points points;
 	
@@ -18,6 +19,7 @@ public class DamageManager extends AbstractView {
 		players = new ArrayList<Player>();
 		enemies = new ArrayList<AbstractEnemy>();
 		friendlyShots = new ArrayList<Shot>();
+		enemyShots = new ArrayList<Shot>();
 		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");	
 		this.points = points;
 	}
@@ -46,6 +48,10 @@ public class DamageManager extends AbstractView {
 				friendlyShots.add(new Shot(this.display, posX, posY, true));
 			}
 		}
+	}
+	
+	public void enemyShot(int posX, int posY) {
+		enemyShots.add(new Shot(this.display, posX, posY, false));
 	}
 	
 	public void update() {
@@ -77,6 +83,9 @@ public class DamageManager extends AbstractView {
 			shot.update();
 		}
 		
+		for(Shot shot: enemyShots) {
+			shot.update();
+		}
 		
 	}
 }

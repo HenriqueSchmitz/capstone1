@@ -75,6 +75,6 @@ public abstract class AbstractEnemy extends AbstractView{
 		this.movement.setStartTime(spawnTime);
 	}
  	
-	public abstract void attack();
+	public abstract void shoot(DamageManager damageManager);
 	
 }
