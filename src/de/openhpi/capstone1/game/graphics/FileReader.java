@@ -48,4 +48,17 @@ public class FileReader {
 		
 		return image;
 	}
+	
+	public static int[][] readFormation(PApplet display, String formationName){
+		String[] imageData = display.loadStrings("src\\de\\openhpi\\capstone1\\game\\graphics\\Formation" + formationName + ".txt");
+		int image[][] = new int[imageData.length][PApplet.split(imageData[0], " ").length];
+		for (int line = 0; line < image.length; line++) {
+			String[] buffer = PApplet.split(imageData[line], ' ');
+			for (int column = 0; column < image[line].length; column++) {
+				image[line][column] = Integer.parseInt(buffer[column]);
+			}
+		}
+		
+		return image;
+	}
 }

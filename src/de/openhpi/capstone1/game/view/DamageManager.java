@@ -13,6 +13,8 @@ public class DamageManager extends AbstractView {
 	private ArrayList<Shot> enemyShots;
 	private int minimumShotDistance;
 	private ArrayList<Points> points;
+	private int endlinePosition;
+	private int scoreAreaHeight;
 	
 	public DamageManager(PApplet display, ArrayList<Points> points) {
 		super(display);
@@ -22,6 +24,11 @@ public class DamageManager extends AbstractView {
 		enemyShots = new ArrayList<Shot>();
 		minimumShotDistance = FileReader.readConfiguration(display, "minimumShotDistance");	
 		this.points = points;
+		
+		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
+		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
+		this.endlinePosition = screenHeight - endlinePositionFromBottom;
+		this.scoreAreaHeight = FileReader.readConfiguration(display, "scoreAreaHeight");
 	}
 	
 	public void setDefaultConfigurations() {
@@ -105,8 +112,20 @@ public class DamageManager extends AbstractView {
 			shot.update();
 		}
 		
+		for(int shot = 0; shot < friendlyShots.size(); shot++) {
+			if(friendlyShots.get(shot).getPosY() < scoreAreaHeight) {
+				friendlyShots.remove(shot);
+			}
+		}
+		
 		for(Shot shot: enemyShots) {
 			shot.update();
+		}
+		
+		for(int shot = 0; shot < enemyShots.size(); shot++) {
+			if(enemyShots.get(shot).getPosY() > endlinePosition) {
+				enemyShots.remove(shot);
+			}
 		}
 		
 	}

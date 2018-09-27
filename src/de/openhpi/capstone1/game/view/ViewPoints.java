@@ -68,7 +68,7 @@ public class ViewPoints extends AbstractView{
 		showPoints();
 	}
 
-	@Override
+	
 	public void setDefaultConfigurations() {
 		// TODO Auto-generated method stub
 		

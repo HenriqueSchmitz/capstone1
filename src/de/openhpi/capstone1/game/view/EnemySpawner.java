@@ -27,7 +27,7 @@ public class EnemySpawner extends AbstractView{
 		super(display);
 		this.interactiveCounter = interactiveCounter;
 		enemies = new ArrayList<ArrayList<AbstractEnemy>>();
-		formationManager = new FormationManager(display, points);
+		formationManager = new FormationManager(display, points, damageManager);
 		
 		AbstractEnemy exampleAlien = new SpaceInvader(display,0,0);
 		
@@ -53,7 +53,7 @@ public class EnemySpawner extends AbstractView{
 	}
 	
 	private void spawnLine() {
-		enemies.addAll(formationManager.getFormation(damageManager));
+		enemies.addAll(formationManager.getFormation());
 //		enemies.add(new ArrayList<AbstractEnemy>());
 		this.lastLine = enemies.size() - 1;
 //		for(int column = 0; column < aliensPerLine; column++) {
@@ -64,9 +64,11 @@ public class EnemySpawner extends AbstractView{
 	}
 	
 	private boolean isLineAlive(int line) {
-		for(int column = 0; column < aliensPerLine; column++) {
-			if(enemies.get(line).get(column).isAlive()) {
-				return true;
+		if(enemies.size() > line) {
+			for(int column = 0; column < aliensPerLine; column++) {
+				if(enemies.get(line).get(column).isAlive()) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -99,8 +101,14 @@ public class EnemySpawner extends AbstractView{
 			}
 		}
 		
-		for(AbstractEnemy alien: enemies.get(0)) {
-			alien.shoot(damageManager);
+		for(int column = 0; column < enemies.get(0).size(); column++) {
+			int line = 0;
+			while((line < (enemies.size() - 1)) && !enemies.get(line).get(column).isAlive()) {
+				line++;
+			}
+			if(enemies.get(line).get(column).getPosY() >= this.alienStartY) {
+				enemies.get(line).get(column).shoot(damageManager);
+			}
 		}
 		
 		if(isGameOver()) {

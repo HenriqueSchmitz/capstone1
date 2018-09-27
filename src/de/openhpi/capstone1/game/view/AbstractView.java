@@ -11,5 +11,4 @@ public abstract class AbstractView {
 	
 	public abstract void update();
 	
-	public abstract void setDefaultConfigurations();
 }

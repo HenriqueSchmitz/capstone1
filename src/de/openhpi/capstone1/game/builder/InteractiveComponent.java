@@ -17,12 +17,6 @@ public abstract class InteractiveComponent {
 	protected String view;
 	protected ArrayList<Keyboard> keyboards;
 	
-	public void setDefaultConfigurations() {
-		for (AbstractView view : game) {
-			view.setDefaultConfigurations(); 
-		}
-	}
-	
 	public void setView(String view) {
 		this.view = view;
 	}
