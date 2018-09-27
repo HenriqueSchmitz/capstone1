@@ -19,10 +19,6 @@ public class ViewLives extends AbstractView{
 		this.endlinePosition = screenHeight - endlinePositionFromBottom;
 	}
 	
-	public void setDefaultConfigurations() {
-		// not sure what to write here
-	}
-	
 	public void displayNumberOfLives() {
 		display.textSize(40);
 		display.fill(255);

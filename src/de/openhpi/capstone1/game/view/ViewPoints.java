@@ -7,17 +7,11 @@ import processing.core.PApplet;
 
 public class ViewPoints extends AbstractView{
 	private ArrayList<Points> points;
-	//private int endlinePosition;
-	//private int scoreAreaHeight;
 	private int screenWidth;
 	private int sideBorderSize;
 	
 	public ViewPoints(PApplet display, ArrayList<Points> points) {
 		super(display);
-	//	int screenHeight = FileReader.readConfiguration(display, "screenHeight");
-	//	int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
-	//	this.endlinePosition = screenHeight - endlinePositionFromBottom;
-	//	this.scoreAreaHeight = FileReader.readConfiguration(display, "scoreAreaHeight");
 		this.screenWidth = FileReader.readConfiguration(display, "screenWidth");
 		this.sideBorderSize = FileReader.readConfiguration(display, "sideBorderSize");
 		this.points = points;
@@ -66,11 +60,5 @@ public class ViewPoints extends AbstractView{
 	public void update() {
 		display.fill(0);
 		showPoints();
-	}
-
-	
-	public void setDefaultConfigurations() {
-		// TODO Auto-generated method stub
-		
 	}
 }

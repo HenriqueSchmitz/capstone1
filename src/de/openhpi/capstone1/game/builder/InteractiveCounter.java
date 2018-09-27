@@ -31,19 +31,6 @@ public class InteractiveCounter extends InteractiveComponent {
 		this.constructor(applet);
 	}
 	
-//	private void createSecondPlayer(PApplet applet) {
-//		players.add(new Player(this, applet));
-//		points.add(new Points(applet));
-//		keyboards.add(new Keyboard(applet));
-//		keyboards.get(1).addDamageManager(damageManager);
-//		keyboards.get(1).addCounter(applet, players.get(1).getCounter());
-//		damageManager.get(1).addPlayer(players.get(1));
-//		counterControllerStrategy.addSecondPlayer(keyboards, damageManager);
-//		game.add(players.get(1));
-//		game.add(damageManager.get(1));
-//		game.add(points.get(1));
-//	}
-	
 	private void createPlayer(PApplet applet) {
 		players.add(new Player(this, applet));
 		points.add(new Points(applet));

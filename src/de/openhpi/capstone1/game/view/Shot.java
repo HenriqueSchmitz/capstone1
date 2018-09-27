@@ -36,10 +36,6 @@ public class Shot extends AbstractView {
 		return this.identificationNumber;
 	}
 	
-	public void setDefaultConfigurations() {
-		// not sure what to write here
-	}
-	
 	public int getPosX() {
 		return posX;
 	}

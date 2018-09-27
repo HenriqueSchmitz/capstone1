@@ -90,6 +90,11 @@ public class DamageManager extends AbstractView {
 					if(this.enemyShots.get(shot).getBoundingBox().checkCollision(targetPlayer.getBoundingBox())) {
 						this.enemyShots.remove(shot);
 						targetPlayer.takeDamage();
+						if (!(targetPlayer.isAlive())) {
+							for (Points point: points) {
+								point.setNewHighScore();
+							}
+						}
 						break;
 					}
 				}
@@ -102,6 +107,11 @@ public class DamageManager extends AbstractView {
 					if(players.get(player).getBoundingBox().checkCollision(targetEnemy.getBoundingBox())) {
 						targetEnemy.die(points.get(player));
 						players.get(player).takeDamage();
+						if (!(players.get(player).isAlive())) {
+							for (Points point: points) {
+								point.setNewHighScore();
+							}
+						}
 						break;
 					}
 				}

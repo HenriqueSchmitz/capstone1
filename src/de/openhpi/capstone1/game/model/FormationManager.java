@@ -84,8 +84,11 @@ public class FormationManager {
 		else if(totalPoints <= 1000){
 			formation = getStage2(damageManager);
 		}
-		else {
+		else if (totalPoints <= 1500){
 			formation = getStage3(damageManager);
+		}
+		else{
+			formation = getStage4(damageManager);
 		}
 		return formation;
 	}
@@ -95,8 +98,8 @@ public class FormationManager {
 		randomizer.add("5LinesEasy", 1);
 		randomizer.add("CheckersEasy", 1);
 		randomizer.add("SidesEasy", 1);
-		//return generateFormation(randomizer.get());
-		return generateFormation("BouncingAlien");
+		randomizer.add("BouncingAlien", 1);
+		return generateFormation(randomizer.get());
 	}
 	
 	private ArrayList<ArrayList<AbstractEnemy>> getStage2(DamageManager damageManager){
@@ -104,6 +107,10 @@ public class FormationManager {
 	}
 	
 	private ArrayList<ArrayList<AbstractEnemy>> getStage3(DamageManager damageManager){
-		return generateFormation("Wedge");
+		return generateFormation("BouncingAlienCenter");
+	}
+	
+	private ArrayList<ArrayList<AbstractEnemy>> getStage4(DamageManager damageManager){
+		return generateFormation("SidesEasyLeft");
 	}
 }

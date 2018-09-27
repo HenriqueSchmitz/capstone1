@@ -7,7 +7,6 @@ import processing.core.PApplet;
 
 public class ViewText extends AbstractView {
 	
-	private int endlinePosition;
 	private int scoreAreaHeight;
 	private int screenWidth;
 	private int sideBorderSize;
@@ -18,20 +17,9 @@ public class ViewText extends AbstractView {
 		this.points = points;
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
-		this.endlinePosition = screenHeight - endlinePositionFromBottom;
 		this.scoreAreaHeight = FileReader.readConfiguration(display, "scoreAreaHeight");
 		this.screenWidth = FileReader.readConfiguration(display, "screenWidth");
 		this.sideBorderSize = FileReader.readConfiguration(display, "sideBorderSize");
-	}
-	
-	public void setDefaultConfigurations() {
-		// not sure what to write here
-	}
-	
-	public void displayCreditTitle() {
-		display.textSize(28);
-		display.fill(255);
-		display.text("CREDIT", 560, endlinePosition + 35);
 	}
 	
 	public void displayScoreBox() {
@@ -71,7 +59,6 @@ public class ViewText extends AbstractView {
 	public void update() {
 		display.fill(0);
 		displayScoreBox();
-		displayCreditTitle();
 		displayScore1Title();
 		displayScore2Title();
 		displayHighScoreTitle();

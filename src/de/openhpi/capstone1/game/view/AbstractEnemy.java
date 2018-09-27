@@ -1,5 +1,6 @@
 package de.openhpi.capstone1.game.view;
 
+import java.util.ArrayList;
 import de.openhpi.capstone1.game.graphics.Image;
 import de.openhpi.capstone1.game.logic.Lives;
 import de.openhpi.capstone1.game.model.BoundingBox;
@@ -15,6 +16,7 @@ public abstract class AbstractEnemy extends AbstractView{
 	protected int scoreValue;
 	protected int posX;
 	protected int posY;
+	protected ArrayList<Float> colors;
 	
 	public AbstractEnemy(PApplet display) {
 		super(display);

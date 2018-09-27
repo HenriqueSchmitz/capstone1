@@ -18,10 +18,6 @@ public class Stage extends AbstractView{	// stage elements
 		this.endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 	}
 	
-	public void setDefaultConfigurations() {
-		// not sure what to write here
-	}
-	
 	@Override
 	public void update() {
 		int endlinePosition = screenHeight - endlinePositionFromBottom;

@@ -78,8 +78,6 @@ public class EnemySpawner extends AbstractView{
 		return (enemies.get(0).get(0).getPosY() + enemies.get(0).get(0).image.getSizeY()) > this.endlinePosition;
 	}
 	
-	
-	
 	public void update() {
 		if(enemies.size() == 0) {
 			this.spawnLine();

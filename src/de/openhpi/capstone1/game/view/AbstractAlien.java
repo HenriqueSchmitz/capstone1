@@ -15,7 +15,11 @@ public abstract class AbstractAlien extends AbstractEnemy{
 	@Override
 	public void update() {
 		if(isAlive()) {
+			display.fill(colors.get(0), colors.get(1), colors.get(2));
+			
 			image.draw(getPosX(), movement.getPosition());
+			
+			display.fill(255);
 		}
 	}
 }
