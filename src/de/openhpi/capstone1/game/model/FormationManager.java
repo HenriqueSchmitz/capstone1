@@ -3,6 +3,7 @@ package de.openhpi.capstone1.game.model;
 import java.util.ArrayList;
 
 import de.openhpi.capstone1.game.aliens.BlankAlien;
+import de.openhpi.capstone1.game.aliens.BouncingAlien;
 import de.openhpi.capstone1.game.aliens.ShooterAlien;
 import de.openhpi.capstone1.game.aliens.SpaceInvader;
 import de.openhpi.capstone1.game.graphics.FileReader;
@@ -62,6 +63,8 @@ public class FormationManager {
 		case 0: return new BlankAlien(display, posX, posY);
 		case 1: return new SpaceInvader(display, posX, posY);
 		case 2: return new ShooterAlien(display, posX, posY);
+		case 3: return new BouncingAlien(display, posX, posY);
+		
 		
 		default: return new BlankAlien(display, posX, posY);
 		}
@@ -92,7 +95,8 @@ public class FormationManager {
 		randomizer.add("5LinesEasy", 1);
 		randomizer.add("CheckersEasy", 1);
 		randomizer.add("SidesEasy", 1);
-		return generateFormation(randomizer.get());
+		//return generateFormation(randomizer.get());
+		return generateFormation("BouncingAlien");
 	}
 	
 	private ArrayList<ArrayList<AbstractEnemy>> getStage2(DamageManager damageManager){

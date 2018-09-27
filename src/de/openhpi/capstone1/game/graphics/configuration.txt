@@ -1,5 +1,5 @@
 pixelSize = 5
-alienSpeed = 3
+alienSpeed = 1.5
 alienSpacingX = 75
 alienSpacingY = 75
 alienStartX = 100
@@ -12,3 +12,4 @@ screenHeight = 750
 sideBorderSize = 100
 endlinePositionFromBottom = 120
 scoreAreaHeight = 100
+alienSideSpeed = 4
