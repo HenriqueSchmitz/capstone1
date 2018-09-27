@@ -74,6 +74,7 @@ public class FormationManager {
 		}
 		
 		ArrayList<ArrayList<AbstractEnemy>> formation;
+		
 		if(totalPoints <= 500) {
 			formation = getStage1(damageManager);
 		}
