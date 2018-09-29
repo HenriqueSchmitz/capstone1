@@ -51,6 +51,15 @@ public class DamageManager extends AbstractView {
 		}
 		else {
 			Shot mostRecentShot = friendlyShots.get(friendlyShots.size() - 1);
+			int index = 2;
+			while(mostRecentShot.getIdentificationNumber() != player) {
+				if((friendlyShots.size() - index) <= 0) {
+					friendlyShots.add(new Shot(this.display, posX, posY, true, player));
+					return;
+				}
+				mostRecentShot = friendlyShots.get(friendlyShots.size() - index);
+				index++;
+			}
 			if(mostRecentShot.movement.getPosition() < mostRecentShot.posY - minimumShotDistance) {
 				friendlyShots.add(new Shot(this.display, posX, posY, true, player));
 			}

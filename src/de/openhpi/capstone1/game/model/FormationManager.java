@@ -98,12 +98,14 @@ public class FormationManager {
 		randomizer.add("5LinesEasy", 1);
 		randomizer.add("CheckersEasy", 1);
 		randomizer.add("SidesEasy", 1);
-		randomizer.add("BouncingAlien", 1);
 		return generateFormation(randomizer.get());
 	}
 	
 	private ArrayList<ArrayList<AbstractEnemy>> getStage2(DamageManager damageManager){
-		return generateFormation("Wedge");
+		randomizer.clear();
+		randomizer.add("Wedge", 2);
+		randomizer.add("BouncingAlien", 1);
+		return generateFormation(randomizer.get());
 	}
 	
 	private ArrayList<ArrayList<AbstractEnemy>> getStage3(DamageManager damageManager){
