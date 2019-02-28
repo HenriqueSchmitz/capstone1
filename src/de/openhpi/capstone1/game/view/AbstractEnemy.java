@@ -1,6 +1,7 @@
 package de.openhpi.capstone1.game.view;
 
 import java.util.ArrayList;
+
 import de.openhpi.capstone1.game.graphics.Image;
 import de.openhpi.capstone1.game.logic.Lives;
 import de.openhpi.capstone1.game.model.BoundingBox;

@@ -1,6 +1,7 @@
 package de.openhpi.capstone1.game.view;
 
 import java.util.ArrayList;
+
 import de.openhpi.capstone1.game.graphics.FileReader;
 import de.openhpi.capstone1.game.graphics.Image;
 import processing.core.PApplet;

@@ -15,8 +15,6 @@ public class ViewText extends AbstractView {
 	public ViewText(PApplet display, ArrayList<Points> points) {
 		super(display);
 		this.points = points;
-		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
-		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 		this.scoreAreaHeight = FileReader.readConfiguration(display, "scoreAreaHeight");
 		this.screenWidth = FileReader.readConfiguration(display, "screenWidth");
 		this.sideBorderSize = FileReader.readConfiguration(display, "sideBorderSize");

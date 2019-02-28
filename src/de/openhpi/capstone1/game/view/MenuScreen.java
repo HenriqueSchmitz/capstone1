@@ -1,14 +1,11 @@
 package de.openhpi.capstone1.game.view;
 
-import de.openhpi.capstone1.game.graphics.Image;
 import processing.core.PApplet;
 
 public class MenuScreen extends AbstractView{
-	private Image image;
 	
 	public MenuScreen(PApplet display) {
 		super(display);
-		image = new Image(display, "Ship");
 	}
 	
 	@Override

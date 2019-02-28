@@ -1,7 +1,7 @@
 package de.openhpi.capstone1.game.starter;
 
-import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import de.openhpi.capstone1.game.builder.GUIComponent;
+import de.openhpi.capstone1.game.builder.InteractiveComponent;
 import de.openhpi.capstone1.game.builder.InteractiveCounterBuilder;
 import de.openhpi.capstone1.game.graphics.FileReader;
 

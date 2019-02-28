@@ -3,7 +3,6 @@ package de.openhpi.capstone1.game.builder;
 import java.util.ArrayList;
 
 import de.openhpi.capstone1.game.controller.CounterControllerStrategy;
-import de.openhpi.capstone1.game.model.Counter;
 import de.openhpi.capstone1.game.model.Keyboard;
 import de.openhpi.capstone1.game.view.AbstractView;
 import de.openhpi.capstone1.game.view.DamageManager;

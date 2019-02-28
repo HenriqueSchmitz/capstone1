@@ -1,20 +1,14 @@
 package de.openhpi.capstone1.game.view;
 
-import de.openhpi.capstone1.game.graphics.FileReader;
 import processing.core.PApplet;
 
 public class Points extends AbstractView {
 	private int score;
 	private int highScore;
-	private int credit;
 	private boolean isNewHighScore;
-	private int sideBorderSize;
-	private int screenWidth;
 	
 	public Points(PApplet display) {
 		super(display);
-		this.sideBorderSize = FileReader.readConfiguration(display, "sideBorderSize");
-		this.screenWidth = FileReader.readConfiguration(display, "screenWidth");
 	}
 	
 	public void setDefaultConfigurations() {

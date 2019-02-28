@@ -2,7 +2,6 @@ package de.openhpi.capstone1.game.view;
 
 import java.util.ArrayList;
 
-import de.openhpi.capstone1.game.aliens.SpaceInvader;
 import de.openhpi.capstone1.game.builder.InteractiveCounter;
 import de.openhpi.capstone1.game.graphics.FileReader;
 import de.openhpi.capstone1.game.model.FormationManager;
@@ -16,9 +15,7 @@ public class EnemySpawner extends AbstractView{
 	private ArrayList<Points> points;
 	private FormationManager formationManager;
 	private int aliensPerLine;
-	private int alienStartX;
 	private int alienStartY;
-	private int alienSpacingX;
 	private int alienSpacingY;
 	private int lastLine;
 	private int endlinePosition;
@@ -29,27 +26,14 @@ public class EnemySpawner extends AbstractView{
 		enemies = new ArrayList<ArrayList<AbstractEnemy>>();
 		formationManager = new FormationManager(display, points, damageManager);
 		
-		AbstractEnemy exampleAlien = new SpaceInvader(display,0,0);
-		
 		this.damageManager = damageManager;
 		this.aliensPerLine = FileReader.readConfiguration(display, "aliensPerLine");
 		this.alienStartY = FileReader.readConfiguration(display, "alienStartY");
-		this.alienSpacingX = FileReader.readConfiguration(display, "alienSpacingX");
 		this.alienSpacingY = FileReader.readConfiguration(display, "alienSpacingY");
 		int screenHeight = FileReader.readConfiguration(display, "screenHeight");
 		int endlinePositionFromBottom = FileReader.readConfiguration(display, "endlinePositionFromBottom");
 		this.endlinePosition = screenHeight - endlinePositionFromBottom;
-		int screenWidth = FileReader.readConfiguration(display, "screenWidth");
-		this.alienStartX = (screenWidth - (aliensPerLine-1) * alienSpacingX - exampleAlien.image.getSizeX())/2 ;
 		this.points = points;
-	}
-	
-	public void setDefaultConfigurations() {
-		enemies.removeAll(enemies);
-		this.alienStartX = FileReader.readConfiguration(display, "alienStartX");
-		this.alienStartY = FileReader.readConfiguration(display, "alienStartY");
-		this.alienSpacingX = FileReader.readConfiguration(display, "alienSpacingX");
-		this.alienSpacingY = FileReader.readConfiguration(display, "alienSpacingY");
 	}
 	
 	private void spawnLine() {
